@@ -1,0 +1,56 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../match-listing/match-listing.html">
+<script src="../../scripts/jquery-2.2.2.min.js"></script>
+
+<dom-module id="match-list">
+  <template>
+  <style>
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  /*li {
+    padding: 20px 0;
+  }*/
+  li + li {
+    border-top: solid 1px #BDBDBD;
+
+  }
+  </style>
+  <ul>
+
+    <template is="dom-repeat" items="{{matches}}">
+      <li>
+        <match-listing blue-teams="{{item.blueTeams}}" gold-teams="{{item.goldTeams}}" time="{{item.time}}" blue-score="{{item.blueScore}}" gold-score="{{item.goldScore}}" match-completed="{{item.matchCompleted}}"></match-listing>
+      </li>
+    </template>
+  </ul>
+</template>
+<script>
+Polymer({
+  is: "match-list",
+  properties: {
+    matches: Array
+  },
+  ready: function() {
+    this.matches = [{
+      blueTeams: [{first: 'Balboa', last: 'Community Day'}],
+      goldTeams: [{first: 'Head-Royce', last: 'Encinal'}],
+      time: "Sat 11:39 AM",
+      blueScore: 2,
+      goldScore: 3,
+      matchCompleted: true
+    }, {
+      blueTeams: [{first: 'Balboa', last: 'Community Day'}],
+      goldTeams: [{first: 'Head-Royce', last: 'Encinal'}],
+      time: "Sat 11:39 AM",
+      blueScore: 2,
+      goldScore: 3,
+      matchCompleted: false
+    }]
+  }
+});
+
+
+</script>
+</dom-module>

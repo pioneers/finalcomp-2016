@@ -9,6 +9,12 @@
         align-items: center;
         justify-content: space-between;
       }
+      paper-item {
+        justify-content: space-between;
+        align-items: center;
+        line-height: 30px;
+        padding: 20px 0;
+      }
       #left {
         padding-left: 10px;
       }
@@ -32,7 +38,16 @@
         bottom: 10px;
       }
     </style>
-    <div class="listing-wrapper">
+    <!-- For maintaining the color of the paper-item when pressed -->
+    <style is="custom-style">
+    paper-item {
+      --paper-item-focused-before: {
+        opacity: 0;
+      };
+    }
+    </style>
+    <paper-item>
+      <paper-ripple></paper-ripple>
       <div id="left">
         <template is="dom-repeat" items="{{blueTeams}}">
           <span id="blue-teams">{{item.first}} and {{item.last}}</span>
@@ -58,7 +73,7 @@
           </div>
         </template>
       </div>
-    </div>
+    </paper-item>
   </template>
   <script>
     Polymer({
@@ -75,14 +90,14 @@
         //   calculated: blueTeams[0]
         // }
       },
-      ready: function() {
-        this.blueTeams = [{first: 'Balboa', last: 'Community Day'}];
-        this.goldTeams = [{first: 'Head-Royce', last: 'Encinal'}];
-        this.time = "Sat 11:39 AM";
-        this.blueScore = 2;
-        this.goldScore = 3;
-        this.matchCompleted = true;
-      }
+      // ready: function() {
+      //   this.blueTeams = [{first: 'Balboa', last: 'Community Day'}];
+      //   this.goldTeams = [{first: 'Head-Royce', last: 'Encinal'}];
+      //   this.time = "Sat 11:39 AM";
+      //   this.blueScore = 2;
+      //   this.goldScore = 3;
+      //   this.matchCompleted = true;
+      // }
     });
   </script>
 </dom-module>
