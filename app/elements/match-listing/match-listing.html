@@ -13,11 +13,14 @@
         padding-left: 10px;
       }
       #right {
-
-        padding: 10px 10px 10px 20px;
+        display: flex;
+        align-items: center;
       }
       #right-col {
+        display: block;
         border-left: 1px solid #BDBDBD;
+        padding: 10px 10px 10px 20px;
+        margin-left: 20px;
       }
       span {
         display: block;
@@ -46,8 +49,10 @@
           </div>
         </template>
         <template is="dom-if" if="{{matchCompleted}}">
-          <span id="blue-score">{{blueScore}}</span>
-          <span id="gold-score">{{goldScore}}</span>
+          <div id="scores">
+            <span id="blue-score">{{blueScore}}</span>
+            <span id="gold-score">{{goldScore}}</span>
+          </div>
           <div id="right-col">
             <span>Final</span>
           </div>
