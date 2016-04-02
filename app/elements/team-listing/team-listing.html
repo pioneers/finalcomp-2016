@@ -23,10 +23,21 @@
         margin-right: 20px;
       }
     </style>
-    <div class="listing-wrapper">
+
+    <!-- For maintaining the color of the paper-item when pressed -->
+    <style is="custom-style">
+    paper-item {
+      --paper-item-focused-before: {
+        opacity: 0;
+      };
+    }
+  </style>
+
+    <paper-item>
+      <paper-ripple></paper-ripple>
       <img src="{{img}}" alt="">
       <p><span>{{name}}</span>{{email}}</p>
-    </div>
+    </paper-item>
   </template>
   <script>
     Polymer({
