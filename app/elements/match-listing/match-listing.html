@@ -1,0 +1,43 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="team-listing">
+  <template>
+    <style>
+      .listing-wrapper {
+        display: flex;
+        align-items: center;
+      }
+      img {
+        border-radius: 50%;
+        margin: 0 20px;
+        height: 50px;
+      }
+      p {
+        line-height: 90px;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        font-weight: 400;
+      }
+      span {
+        margin-right: 20px;
+      }
+    </style>
+    <div class="listing-wrapper">
+      <img src="{{img}}" alt="">
+      <p><span>{{name}}</span>{{email}}</p>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: "team-listing",
+      properties: {
+        blue-teams: Array,
+        gold-teams: Array,
+        time: String,
+        score: String,
+        match-completed: Number,
+      }
+    });
+  </script>
+</dom-module>
