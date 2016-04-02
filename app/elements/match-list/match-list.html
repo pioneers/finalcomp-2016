@@ -7,10 +7,10 @@
   <style>
   ul {
     list-style: none;
-    padding: 20px;
+    padding: 0;
   }
   li + li {
-    border-top: solid 1px #666;
+    border-top: solid 1px #BDBDBD;
   }
   </style>
   <ul>
@@ -46,14 +46,28 @@ Polymer({
 
           for (i = 0; i < entries.length; i++) {
             teamNumber = entries[i]['title']['$t'];
-            teamName = entries[i]['content']['$t'];
+            startIndex = 10
+            endIndex = 0
+            content = entries[i]['content']['$t'];
+            for (x = 0; x < 50; x++) {
+              console.log(content.substring(x, x+1));
+              if (content.substring(x, x+1) == ',') {
+                endIndex = x;
+
+
+
+
+            teamName = content.substring(startIndex, endIndex);
+            imgLink = content.substring(endIndex+10);
             context.push('matches', {
               name: teamNumber,
               email: teamName,
-              img: "https://randomuser.me/api/portraits/thumb/men/5.jpg"
+              img: imgLink,
             });
+            break;
           }
-          console.log(context);
+          }
+        }
         }
       };
     };
@@ -61,7 +75,6 @@ Polymer({
     xmlhttp.onreadystatechange = update(xmlhttp, this);
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
-    setTimeout(function(context) {console.log(context.matches);}, 3000, this);
   }
 });
 
