@@ -1,0 +1,70 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../match-listing/match-listing.html">
+<script src="../../scripts/jquery-2.2.2.min.js"></script>
+
+<dom-module id="match-list">
+  <template>
+  <style>
+  ul {
+    list-style: none;
+    padding: 20px;
+  }
+  li + li {
+    border-top: solid 1px #666;
+  }
+  </style>
+  <ul>
+
+    <template is="dom-repeat" items="{{matches}}">
+      <li>
+        <match-listing name="{{item.name}}" email="{{item.email}}" img="{{item.img}}"></match-listing>
+      </li>
+    </template>
+  </ul>
+</template>
+<script>
+Polymer({
+  is: "match-list",
+  properties: {
+    matches: {
+      type: Array,
+      notify: true,
+      reflectToAttribute: true
+    }
+  },
+  ready: function() {
+    this.matches = []
+
+    var xmlhttp = new XMLHttpRequest();
+    var url = "https://spreadsheets.google.com/feeds/list/1sS_1lnoimrSNXpUduBsPu3ydLvFEQBooG393O-WKhxc/od6/public/basic?alt=json";
+
+    var update = function(xmlhttp, context) {
+      return function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var myArr = JSON.parse(xmlhttp.responseText);
+          var entries = myArr['feed']['entry'];
+
+          for (i = 0; i < entries.length; i++) {
+            teamNumber = entries[i]['title']['$t'];
+            teamName = entries[i]['content']['$t'];
+            context.push('matches', {
+              name: teamNumber,
+              email: teamName,
+              img: "https://randomuser.me/api/portraits/thumb/men/5.jpg"
+            });
+          }
+          console.log(context);
+        }
+      };
+    };
+
+    xmlhttp.onreadystatechange = update(xmlhttp, this);
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+    setTimeout(function(context) {console.log(context.matches);}, 3000, this);
+  }
+});
+
+
+</script>
+</dom-module>

@@ -1,0 +1,39 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="match-listing">
+  <template>
+    <style>
+      .listing-wrapper {
+        display: flex;
+      }
+      .listing-wrapper img {
+        border-radius: 50%;
+        margin-right: 40px;
+        height: 50px;
+      }
+
+      h3 {
+        margin-right: 0 10px 0 0;
+        line-height: 80px;
+      }
+      .listing-wrapper span {
+        line-height: 80px;
+      }
+    </style>
+    <div class="listing-wrapper">
+      <img src="{{img}}" alt="">
+      <h3>{{name}}</h3>
+      <span>{{email}}</span>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: "match-listing",
+      properties: {
+        name: String,
+        email: String,
+        img: String
+      }
+    });
+  </script>
+</dom-module>
