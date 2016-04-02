@@ -13,8 +13,11 @@
         padding-left: 10px;
       }
       #right {
-        border-left: 1px solid #BDBDBD;
+
         padding: 10px 10px 10px 20px;
+      }
+      #right-col {
+        border-left: 1px solid #BDBDBD;
       }
       span {
         display: block;
@@ -35,8 +38,20 @@
           <span id="gold-teams">{{item.first}} and {{item.last}}</span>
         </template>
       </div>
+
       <div id="right">
-        {{time}}
+        <template is="dom-if" if="{{!matchCompleted}}">
+          <div id="right-col">
+            {{time}}
+          </div>
+        </template>
+        <template is="dom-if" if="{{matchCompleted}}">
+          <span id="blue-score">{{blueScore}}</span>
+          <span id="gold-score">{{goldScore}}</span>
+          <div id="right-col">
+            <span>Final</span>
+          </div>
+        </template>
       </div>
     </div>
   </template>
@@ -49,7 +64,7 @@
         time: String,
         blueScore: Number,
         goldScore: Number,
-        matchCompleted: Number,
+        matchCompleted: Boolean,
         // blueTeam1: {
         //   notify: true,
         //   calculated: blueTeams[0]
@@ -61,7 +76,7 @@
         this.time = "Sat 11:39 AM";
         this.blueScore = 2;
         this.goldScore = 3;
-        this.matchCompleted = 1;
+        this.matchCompleted = true;
       }
     });
   </script>
