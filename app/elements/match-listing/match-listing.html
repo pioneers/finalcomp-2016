@@ -1,42 +1,66 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
-<dom-module id="team-listing">
+<dom-module id="match-listing">
   <template>
     <style>
       .listing-wrapper {
         display: flex;
         align-items: center;
+        justify-content: space-between;
       }
-      img {
-        border-radius: 50%;
-        margin: 0 20px;
-        height: 50px;
+      #left {
+        padding-left: 10px;
       }
-      p {
-        line-height: 90px;
-        margin: 0;
-        padding: 0;
-        font-size: 20px;
-        font-weight: 400;
+      #right {
+        border-left: 1px solid #BDBDBD;
+        padding: 10px 10px 10px 20px;
       }
       span {
-        margin-right: 20px;
+        display: block;
+      }
+      span:nth-of-type(2) {
+        margin-top: 10px;
+      }
+      #gold-teams {
+        bottom: 10px;
       }
     </style>
     <div class="listing-wrapper">
-      <img src="{{img}}" alt="">
-      <p><span>{{name}}</span>{{email}}</p>
+      <div id="left">
+        <template is="dom-repeat" items="{{blueTeams}}">
+          <span id="blue-teams">{{item.first}} and {{item.last}}</span>
+        </template>
+        <template is="dom-repeat" items="{{goldTeams}}">
+          <span id="gold-teams">{{item.first}} and {{item.last}}</span>
+        </template>
+      </div>
+      <div id="right">
+        {{time}}
+      </div>
     </div>
   </template>
   <script>
     Polymer({
-      is: "team-listing",
+      is: "match-listing",
       properties: {
-        blue-teams: Array,
-        gold-teams: Array,
+        blueTeams: Array,
+        goldTeams: Array,
         time: String,
-        score: String,
-        match-completed: Number,
+        blueScore: Number,
+        goldScore: Number,
+        matchCompleted: Number,
+        // blueTeam1: {
+        //   notify: true,
+        //   calculated: blueTeams[0]
+        // }
+      },
+      ready: function() {
+        this.blueTeams = [{first: 'Balboa', last: 'Community Day'}];
+        this.goldTeams = [{first: 'Head-Royce', last: 'Encinal'}];
+        this.time = "Sat 11:39 AM";
+        this.blueScore = 2;
+        this.goldScore = 3;
+        this.matchCompleted = 1;
       }
     });
   </script>
