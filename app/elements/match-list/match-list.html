@@ -17,7 +17,13 @@
 
     <template is="dom-repeat" items="{{matches}}">
       <li>
-        <match-listing blue-teams="{{item.blueTeams}}" gold-teams="{{item.goldTeams}}" time="{{item.time}}" blue-score="{{item.blueScore}}" gold-score="{{item.goldScore}}" match-completed="{{item.matchCompleted}}"></match-listing>
+        <match-listing blue-teams="{{item.blueTeams}}"
+                       gold-teams="{{item.goldTeams}}"
+                       time="{{item.time}}"
+                       blue-score="{{item.blueScore}}"
+                       gold-score="{{item.goldScore}}"
+                       match-completed="{{item.matchCompleted}}">
+        </match-listing>
       </li>
     </template>
   </ul>
