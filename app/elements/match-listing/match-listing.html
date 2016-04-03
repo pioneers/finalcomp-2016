@@ -4,29 +4,30 @@
 <dom-module id="match-listing">
   <template>
     <style>
-      .listing-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
       paper-item {
         justify-content: space-between;
         align-items: center;
-        line-height: 30px;
         padding: 20px 0;
+        font-size: 12px;
       }
       #left {
-        padding-left: 10px;
+        padding-left: 5px;
       }
       #right {
         display: flex;
         align-items: center;
       }
       #right-col {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
         border-left: 1px solid #BDBDBD;
-        padding: 10px 10px 10px 20px;
+        padding: 10px 0 10px 10px;
         margin-left: 20px;
+        width: 60px;
+        text-align: center;
+        line-height: 20px;
       }
       span {
         display: block;
@@ -36,6 +37,12 @@
       }
       #gold-teams {
         bottom: 10px;
+      }
+
+      @media screen and (min-width:550px) {
+        paper-item {
+          font-size: 15px;
+        }
       }
     </style>
     <!-- For maintaining the color of the paper-item when pressed -->
@@ -48,6 +55,7 @@
     </style>
     <paper-item>
       <paper-ripple></paper-ripple>
+
       <div id="left">
         <template is="dom-repeat" items="{{blueTeams}}">
           <span id="blue-teams">{{item.first}} and {{item.last}}</span>
@@ -63,6 +71,7 @@
             {{time}}
           </div>
         </template>
+
         <template is="dom-if" if="{{matchCompleted}}">
           <div id="scores">
             <span id="blue-score">{{blueScore}}</span>
@@ -85,19 +94,7 @@
         blueScore: Number,
         goldScore: Number,
         matchCompleted: Boolean,
-        // blueTeam1: {
-        //   notify: true,
-        //   calculated: blueTeams[0]
-        // }
       },
-      // ready: function() {
-      //   this.blueTeams = [{first: 'Balboa', last: 'Community Day'}];
-      //   this.goldTeams = [{first: 'Head-Royce', last: 'Encinal'}];
-      //   this.time = "Sat 11:39 AM";
-      //   this.blueScore = 2;
-      //   this.goldScore = 3;
-      //   this.matchCompleted = true;
-      // }
     });
   </script>
 </dom-module>
