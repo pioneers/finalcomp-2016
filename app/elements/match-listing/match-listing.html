@@ -88,7 +88,9 @@
           </div>
           <div id="right-col">
             <span>Final</span>
-            <a href="{{youtubeLink}}" target="_blank"></a>
+            <template is="dom-if" if="{{youtubeLink}}">
+              <a href="{{youtubeLink}}" target="_blank"></a>
+            </template>
           </div>
         </template>
       </div>
