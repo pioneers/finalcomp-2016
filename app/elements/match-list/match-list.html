@@ -32,24 +32,94 @@
 Polymer({
   is: "match-list",
   properties: {
-    matches: Array
+    googleSheetsKey: String,
+    sheetName: String,
+    matches: {
+      type: Array,
+      notify: true,
+      reflectToAttribute: true
+    }
   },
   ready: function() {
-    this.matches = [{
-      blueTeams: [{first: 'Balboa', last: 'Community Day'}],
-      goldTeams: [{first: 'Head-Royce', last: 'Encinal'}],
-      time: "Sat 11:39 AM",
-      blueScore: 2,
-      goldScore: 3,
-      matchCompleted: true
-    }, {
-      blueTeams: [{first: 'Balboa', last: 'Community Day'}],
-      goldTeams: [{first: 'Head-Royce', last: 'Encinal'}],
-      time: "Sat 11:39 AM",
-      blueScore: 2,
-      goldScore: 3,
-      matchCompleted: false
-    }]
+    // this.matches = [{
+    //   blueTeams: [{first: 'Balboa', last: 'Community Day'}],
+    //   goldTeams: [{first: 'Head-Royce', last: 'Encinal'}],
+    //   time: "Sat 11:39 AM",
+    //   blueScore: 2,
+    //   goldScore: 3,
+    //   matchCompleted: true
+    // }, {
+    //   blueTeams: [{first: 'Balboa', last: 'Community Day'}],
+    //   goldTeams: [{first: 'Head-Royce', last: 'Encinal'}],
+    //   time: "Sat 11:39 AM",
+    //   blueScore: 2,
+    //   goldScore: 3,
+    //   matchCompleted: false
+    // }]
+    this.matches = []
+
+    var xmlhttp = new XMLHttpRequest();
+    var scriptKey = "AKfycbzy4YrpczDS_YbSaD6rfUVuSCFqfWUmPf_pq1F3Ic6Zm9nSmDs"
+    var scriptUrl = `https://script.google.com/macros/s/${scriptKey}/exec?id=${this.googleSheetsKey}&sheet=${this.sheetName}`
+
+    var update = function(xmlhttp, context) {
+      return function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var myArr = JSON.parse(xmlhttp.responseText);
+          var matches = myArr["elim_matches"];
+          for (i=0; i < matches.length; i++) {
+            var match = matches[i];
+            var blueTeams = [{first: match["Blue1Name"], last: match["Blue2Name"]}];
+              if (!blueTeams[0]["first"]) { break; }
+            var goldTeams = [{first: match["Gold1Name"], last: match["Gold2Name"]}];
+            var time = match["MatchTime"];
+            var blueScore = match["BlueScore"];
+            var goldScore = match["GoldScore"];
+            var matchCompleted = match["MatchCompleted"];
+            if (matchCompleted == 1) {
+              matchCompleted = true;
+            } else {
+              matchCompleted = false;
+            }
+            context.push('matches', {
+              blueTeams: blueTeams,
+              goldTeams: goldTeams,
+              time: time,
+              blueScore: blueScore,
+              goldScore: goldScore,
+              matchCompleted: matchCompleted
+            });
+          }
+
+
+        //   for (i = 0; i < entries.length; i++) {
+        //     teamNumber = entries[i]['title']['$t'];
+        //     startIndex = 10
+        //     endIndex = 0
+        //     content = entries[i]['content']['$t'];
+        //     for (x = 0; x < 50; x++) {
+        //       if (content.substring(x, x+1) == ',') {
+        //         endIndex = x;
+        //
+        //     teamName = content.substring(startIndex, endIndex);
+        //     imgLink = content.substring(endIndex+10);
+        //     context.push('matches', {
+        //       name: teamNumber,
+        //       email: teamName,
+        //       img: imgLink,
+        //     });
+        //     break;
+        //   }
+        //   }
+        // }
+        }
+      };
+    };
+
+    xmlhttp.onreadystatechange = update(xmlhttp, this);
+    xmlhttp.open("GET", scriptUrl, true);
+    xmlhttp.send();
+
   }
 });
 
