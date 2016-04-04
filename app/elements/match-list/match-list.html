@@ -22,7 +22,8 @@
                        time="{{item.time}}"
                        blue-score="{{item.blueScore}}"
                        gold-score="{{item.goldScore}}"
-                       match-completed="{{item.matchCompleted}}">
+                       match-completed="{{item.matchCompleted}}"
+                       youtube-link="{{item.youtubeLink}}">
         </match-listing>
       </li>
     </template>
@@ -66,7 +67,8 @@ Polymer({
       return function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
           var myArr = JSON.parse(xmlhttp.responseText);
-          var matches = myArr["elim_matches"];
+          var matches = myArr[context.sheetName];
+          console.log(matches);
           for (i=0; i < matches.length; i++) {
             var match = matches[i];
             var blueTeams = [{first: match["Blue1Name"], last: match["Blue2Name"]}];
@@ -76,6 +78,7 @@ Polymer({
             var blueScore = match["BlueScore"];
             var goldScore = match["GoldScore"];
             var matchCompleted = match["MatchCompleted"];
+            var youtubeLink = match["VideoURL"];
             if (matchCompleted == 1) {
               matchCompleted = true;
             } else {
@@ -87,31 +90,10 @@ Polymer({
               time: time,
               blueScore: blueScore,
               goldScore: goldScore,
-              matchCompleted: matchCompleted
+              matchCompleted: matchCompleted,
+              youtubeLink: youtubeLink
             });
           }
-
-
-        //   for (i = 0; i < entries.length; i++) {
-        //     teamNumber = entries[i]['title']['$t'];
-        //     startIndex = 10
-        //     endIndex = 0
-        //     content = entries[i]['content']['$t'];
-        //     for (x = 0; x < 50; x++) {
-        //       if (content.substring(x, x+1) == ',') {
-        //         endIndex = x;
-        //
-        //     teamName = content.substring(startIndex, endIndex);
-        //     imgLink = content.substring(endIndex+10);
-        //     context.push('matches', {
-        //       name: teamNumber,
-        //       email: teamName,
-        //       img: imgLink,
-        //     });
-        //     break;
-        //   }
-        //   }
-        // }
         }
       };
     };
