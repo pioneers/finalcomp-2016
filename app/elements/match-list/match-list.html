@@ -60,30 +60,37 @@ Polymer({
     this.matches = []
 
     var xmlhttp = new XMLHttpRequest();
-    var scriptKey = "AKfycbzy4YrpczDS_YbSaD6rfUVuSCFqfWUmPf_pq1F3Ic6Zm9nSmDs"
-    var scriptUrl = `https://script.google.com/macros/s/${scriptKey}/exec?id=${this.googleSheetsKey}&sheet=${this.sheetName}`
-
+    var scriptKey = "";
+    var scriptUrl = "https://spreadsheets.google.com/feeds/list/16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So/od6/public/basic?alt=json";
+    var scriptUrl = `https://spreadsheets.google.com/feeds/list/${this.googleSheetsKey}/${this.sheetName}/public/basic?alt=json`;
     var update = function(xmlhttp, context) {
       return function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        if (xmlhttp.readyState == 4 & xmlhttp.status == 200) {
           var myArr = JSON.parse(xmlhttp.responseText);
-          var matches = myArr[context.sheetName];
-          console.log(matches);
-          for (i=0; i < matches.length; i++) {
-            var match = matches[i];
-            var blueTeams = [{first: match["Blue1Name"], last: match["Blue2Name"]}];
-              if (!blueTeams[0]["first"]) { break; }
-            var goldTeams = [{first: match["Gold1Name"], last: match["Gold2Name"]}];
-            var time = match["MatchTime"];
-            var blueScore = match["BlueScore"];
-            var goldScore = match["GoldScore"];
-            var matchCompleted = match["MatchCompleted"];
-            var youtubeLink = match["VideoURL"];
-            if (matchCompleted == 1) {
-              matchCompleted = true;
-            } else {
-              matchCompleted = false;
-            }
+          var entries = myArr['feed']['entry'];
+          for (i = 0; i < entries.length; i++) {
+            var content = entries[i]["content"]["$t"];
+            // content = content.replace(/(['"])?([a-zA-Z0-9]+)(['"])?:/g, '"$2":');
+            content = content.replace(/([:,]\s)/g, '"$1"');
+            // Catches accidental new lines in Google Sheet
+            // content = content.replace(/\\[n]/g, '');
+            content = content.replace(/(\r\n|\n|\r)/gm,"")
+            content = '{"' + content + '"}';
+            // console.log(obj);
+            match = JSON.parse(content);
+                    var blueTeams = [{first: match["blue1name"], last: match["blue2name"]}];
+                      if (!blueTeams[0]["first"]) { break; }
+                    var goldTeams = [{first: match["gold1name"], last: match["gold2name"]}];
+                    var time = match["matchtime"];
+                    var blueScore = match["bluescore"];
+                    var goldScore = match["goldscore"];
+                    var matchCompleted = match["matchcompleted"];
+                    var youtubeLink = match["videourl"];
+                    if (matchCompleted == 1) {
+                      matchCompleted = true;
+                    } else {
+                      matchCompleted = false;
+                    }
             context.push('matches', {
               blueTeams: blueTeams,
               goldTeams: goldTeams,
@@ -94,17 +101,68 @@ Polymer({
               youtubeLink: youtubeLink
             });
           }
+          console.log(context.matches);
         }
-      };
+      }
     };
-
     xmlhttp.onreadystatechange = update(xmlhttp, this);
     xmlhttp.open("GET", scriptUrl, true);
     xmlhttp.send();
 
+    // var xmlhttp = new XMLHttpRequest();
+    // var scriptKey = "AKfycbzy4YrpczDS_YbSaD6rfUVuSCFqfWUmPf_pq1F3Ic6Zm9nSmDs"
+    // var scriptUrl = `https://script.google.com/macros/s/${scriptKey}/exec?id=${this.googleSheetsKey}&sheet=${this.sheetName}`
+    //
+    // var update = function(xmlhttp, context) {
+    //   return function() {
+    //     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    //       var myArr = JSON.parse(xmlhttp.responseText);
+    //       var matches = myArr[context.sheetName];
+    //       console.log(matches);
+    //       for (i=0; i < matches.length; i++) {
+    //         var match = matches[i];
+    //         var blueTeams = [{first: match["Blue1Name"], last: match["Blue2Name"]}];
+    //           if (!blueTeams[0]["first"]) { break; }
+    //         var goldTeams = [{first: match["Gold1Name"], last: match["Gold2Name"]}];
+    //         var time = match["MatchTime"];
+    //         var blueScore = match["BlueScore"];
+    //         var goldScore = match["GoldScore"];
+    //         var matchCompleted = match["MatchCompleted"];
+    //         var youtubeLink = match["VideoURL"];
+    //         if (matchCompleted == 1) {
+    //           matchCompleted = true;
+    //         } else {
+    //           matchCompleted = false;
+    //         }
+    //         context.push('matches', {
+    //           blueTeams: blueTeams,
+    //           goldTeams: goldTeams,
+    //           time: time,
+    //           blueScore: blueScore,
+    //           goldScore: goldScore,
+    //           matchCompleted: matchCompleted,
+    //           youtubeLink: youtubeLink
+    //         });
+    //       }
+    //     }
+    //   };
+    // };
+    //
+    // xmlhttp.onreadystatechange = update(xmlhttp, this);
+    // xmlhttp.open("GET", scriptUrl, true);
+    // xmlhttp.send();
+    //
+    // var umm = function(data) {
+    //   console.log(data);
+    // };
   }
 });
 
 
 </script>
+<!-- <script>
+var umm = function(data) {
+  console.log(data);
+};</script>
+<script type="text/javascript" src="https://script.google.com/macros/s/AKfycbzy4YrpczDS_YbSaD6rfUVuSCFqfWUmPf_pq1F3Ic6Zm9nSmDs/exec?id=19lXyItd85IkpTBw2yJexA-J1JYQ-TnaJ0F3VMVYET-A&sheet=elim_matches&callback=umm"></script> -->
 </dom-module>

@@ -122,16 +122,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="content">
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
             <section data-route="home" tabindex="-1">
+              <paper-tabs selected="{{selected}}">
+                <paper-tab>Qualification</paper-tab>
+                <paper-tab>Elimination</paper-tab>
+                <paper-tab>Rankings</paper-tab>
+              </paper-tabs>
 
-              <paper-material elevation="1">
-                <!-- <my-greeting></my-greeting> -->
-                <match-list google-sheets-key="19lXyItd85IkpTBw2yJexA-J1JYQ-TnaJ0F3VMVYET-A" sheet-name="elim_matches"></match-list>
-              </paper-material>
-              <!-- <paper-material elevation="1">
-                <match-list google-sheets-key="19lXyItd85IkpTBw2yJexA-J1JYQ-TnaJ0F3VMVYET-A" sheet-name="qual_matches"></match-list>
-              </paper-material> -->
-              <paper-material elevation="1">
-                <team-list></team-list>
+
+              <iron-pages selected="{{selected}}">
+                <div>
+
+                  <paper-material elevation="1">
+                    <!-- <my-greeting></my-greeting> -->
+                    <!-- <match-list google-sheets-key="19lXyItd85IkpTBw2yJexA-J1JYQ-TnaJ0F3VMVYET-A" sheet-name="4"></match-list> -->
+                    <match-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-name="4"></match-list>
+                  </paper-material>
+                </div>
+                <div>
+                  <paper-material elevation="1">
+                    <match-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-name="1"></match-list>
+                  </paper-material>
+                </div>
+                <div>
+                  <paper-material elevation="1">
+                    <team-list></team-list>
+                  </paper-material>
+                </div>
+              </iron-pages>
+
+              <paper-material>
+                <match-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-name="4"></match-list>
               </paper-material>
 
               <paper-material elevation="1">
