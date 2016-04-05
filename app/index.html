@@ -149,9 +149,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </div>
               </iron-pages>
 
-              <paper-material>
-                <match-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-name="4"></match-list>
-              </paper-material>
+              <script>
+  document.addEventListener('WebComponentsReady', function () {
+    var template = document.querySelector('template[is="dom-bind"]');
+    template.selected = 0; // selected is an index by default
+  });
+</script>
 
               <paper-material elevation="1">
                 <h2 id="license">License</h2>
