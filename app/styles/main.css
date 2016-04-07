@@ -16,3 +16,97 @@ body {
 .page-title {
   outline: none;
 }
+
+#drawerToolbar {
+  background-image: url(../images/sprocket-cookie.jpg);
+  background-size: contain;
+  background-color: rgba(0, 0, 0, .3);
+	background-blend-mode: multiply;
+}
+
+.drawer-top {
+  position: fixed;
+}
+
+#drawer-close {
+  right: 15px;
+  top: 15px;
+}
+
+#drawer-title {
+  bottom: 30px;
+  color: white;
+}
+
+#drawer-subtitle {
+  bottom: 10px;
+  font-weight: lighter;
+}
+
+.home-banner {
+  width: 100%;
+  height: 250px;
+  background-image: url(../images/spring-comp-2015.jpg);
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, .3);
+	background-blend-mode: multiply;
+  color: white;
+}
+
+.container {
+  padding: 5px;
+}
+
+#top-home-container {
+  position: relative;
+  top: -100px;
+}
+
+#welcome {
+  padding-top: 20px;
+}
+
+#intro-big {
+  font-size: 40px;
+  font-weight: lighter;
+  line-height: 70px;
+}
+
+#intro-small {
+  font-size: 25px;
+  font-weight: lighter;
+}
+
+#hashtags {
+  font-weight: lighter;
+  font-size: 30px;
+  position: relative;
+  top: 20px;
+  left:20px;
+}
+
+#matches-page {
+  padding: 0;
+}
+
+#match-tabs {
+  margin-top: 20px;
+}
+
+@media screen and (min-width:550px) {
+  .home-banner {
+    height: 500px;
+  }
+  .container {
+    padding: 50px;
+  }
+  #top-home-container {
+    top: -120px;
+  }
+  #hashtags {
+    top: 60px;
+    left: 60px;
+    font-size: 40px;
+  }
+}

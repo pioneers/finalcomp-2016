@@ -37,7 +37,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- Add to homescreen for Safari on iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
+  <meta name="apple-mobile-web-app-title" content="Pioneers in Engineering">
   <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
 
   <!-- Tile icon for Win8 (144x144) -->
@@ -45,6 +45,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <!-- build:css styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="images/font-awesome/css/font-awesome.min.css">
   <!-- endbuild-->
 
   <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
@@ -52,7 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- endbuild -->
 
   <!-- Because this project uses vulcanize this should be your only html import
-       in this file. All other imports should go in elements.html -->
+  in this file. All other imports should go in elements.html -->
   <link rel="import" href="elements/elements.html">
 
   <!-- For shared styles, shared-styles.html import in elements.html -->
@@ -71,26 +72,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-scroll-header-panel drawer fixed>
 
         <!-- Drawer Toolbar -->
-        <paper-toolbar id="drawerToolbar">
-          <span class="menu-name">Menu</span>
+        <paper-toolbar id="drawerToolbar" class="tall">
+          <span id="drawer-title" class="drawer-top">Final Competition</span>
+          <span id="drawer-subtitle" class="drawer-top">Pioneers in Engineering</span>
+          <iron-icon id="drawer-close" class="drawer-top" icon="icons:close" paper-drawer-toggle></iron-icon>
+
+          <!-- <span class="menu-name">Menu</span> -->
+          <!-- <div id="drawer-header"></div> -->
         </paper-toolbar>
 
         <!-- Drawer Content -->
         <paper-menu class="app-menu" attr-for-selected="data-route" selected="[[route]]">
           <a data-route="home" href="{{baseUrl}}">
-            <iron-icon icon="home"></iron-icon>
+            <!-- <iron-icon icon="home"></iron-icon> -->
             <span>Home</span>
           </a>
 
           <a data-route="users" href="{{baseUrl}}users">
-            <iron-icon icon="info"></iron-icon>
+            <!-- <iron-icon icon="info"></iron-icon> -->
             <span>Users</span>
           </a>
 
-          <a data-route="contact" href="{{baseUrl}}contact">
-            <iron-icon icon="mail"></iron-icon>
-            <span>Contact</span>
+          <a data-route="matches" href="{{baseUrl}}matches">
+            <!-- <iron-icon icon="mail"></iron-icon> -->
+            <span>Matches</span>
           </a>
+
+          <a data-route="license" href="{{baseUrl}}license">
+            <!-- <iron-icon icon="mail"></iron-icon> -->
+            <span>License</span>
+          </a>
+
         </paper-menu>
       </paper-scroll-header-panel>
 
@@ -120,113 +132,146 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Main Content -->
         <div class="content">
-          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+          <iron-pages attr-for-selected="data-route" selected="{{route}}" style="padding:0;">
             <section data-route="home" tabindex="-1">
-              <paper-tabs selected="{{selected}}">
-                <paper-tab>Qualification</paper-tab>
-                <paper-tab>Elimination</paper-tab>
-                <paper-tab>Rankings</paper-tab>
-              </paper-tabs>
-
-
-              <iron-pages selected="{{selected}}">
-                <div>
-
-                  <paper-material elevation="1">
-                    <!-- <my-greeting></my-greeting> -->
-                    <match-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-name="4"></match-list>
-                  </paper-material>
+              <div class="home-banner"></div>
+              <div id="top-home-container" class="container">
+                <paper-material id="welcome" elevation="1">
+                  <span id="intro-big">Welcome,</span><br>
+                  <span id="intro-small">this is Final Competition.</span>
+                </paper-material>
+                <h2>What is Final Comp?</h2>
+              </div>
+              <div class="home-banner" style="background-image:url(images/fall-comp-2015-h.jpg);">
+                <div id="hashtags">
+                  <span>#pierobotics</span><br>
+                  <span>#pie_rc</span>
                 </div>
-                <div>
-                  <paper-material elevation="1">
-                    <match-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-name="1"></match-list>
-                  </paper-material>
-                </div>
-                <div>
-                  <paper-material elevation="1">
-                    <team-list></team-list>
-                  </paper-material>
-                </div>
-              </iron-pages>
+              </div>
+              <div class="container">
+                <paper-material elevation="1">
+                  <h2>Connect with us</h2>
+                  <i class="fa fa-twitter"></i> @PieRobotics <br>
+                  <i class="fa fa-instagram"></i> @pierobotics <br>
+                  <i class="fa fa-facebook"></i> Pioneers in Engineering <br>
+                  <i class="fa fa-globe"></i> pioneers.berkeley.edu
+                </paper-material>
+              </div>
+              </section>
 
-              <script>
-  document.addEventListener('WebComponentsReady', function () {
-    var template = document.querySelector('template[is="dom-bind"]');
-    template.selected = 0; // selected is an index by default
-  });
-</script>
+              <section data-route="users" tabindex="-1">
+                <paper-material elevation="1">
+                  <h1 class="page-title" tabindex="-1">Users</h1>
+                </paper-material>
+              </section>
 
+              <section data-route="user-info" tabindex="-1">
+                <paper-material elevation="-1">
+                  <h1 class="page-title" tabindex="-1">User: {{params.name}}</h1>
+                  <div>This is {{params.name}}'s section</div>
+                </paper-material>
+              </section>
+
+              <section data-route="matches" tabindex="-1">
+                <paper-tabs id="match-tabs" selected="{{selected}}">
+                  <paper-tab>QUALIFICATION</paper-tab>
+                  <paper-tab>ELIMINATION</paper-tab>
+                  <paper-tab>RANKINGS</paper-tab>
+                </paper-tabs>
+                <style is="custom-style">
+                paper-tabs {
+                  /*--pie-blue: #2B3D62;
+                  --paper-tab-ink: var(--pie-blue);
+                  --paper-tabs-selection-bar-color: var(--pie-blue);*/
+                  background: #2B3D62;
+                  color: white;
+                  padding: 1px;
+                  position: relative;
+                  top: -20px;
+                }
+                </style>
+
+                <iron-pages id="matches-page" selected="{{selected}}">
+                  <div>
+                    <paper-material elevation="1">
+                      <!-- <my-greeting></my-greeting> -->
+                      <match-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-number="4"></match-list>
+                    </paper-material>
+                  </div>
+                  <div>
+                    <paper-material elevation="1">
+                      <match-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-number="1"></match-list>
+                    </paper-material>
+                  </div>
+                  <div>
+                    <paper-material elevation="1">
+                      <team-list></team-list>
+                    </paper-material>
+                  </div>
+                </iron-pages>
+
+                <script>
+                document.addEventListener('WebComponentsReady', function () {
+                  var template = document.querySelector('template[is="dom-bind"]');
+                  template.selected = 0; // selected is an index by default
+                });
+                </script>
+              </paper-material>
+            </section>
+
+            <section data-route="license" tabindex="-1">
               <paper-material elevation="1">
                 <h2 id="license">License</h2>
                 <p>Everything in this repo is BSD style license unless otherwise specified.</p>
                 <p>Copyright (c) 2015 The Polymer Authors. All rights reserved.</p>
                 <p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
                 <ul>
-                <li>Redistributions of source code must retain the above copyright
-                notice, this list of conditions and the following disclaimer.</li>
-                <li>Redistributions in binary form must reproduce the above
-                copyright notice, this list of conditions and the following disclaimer
-                in the documentation and/or other materials provided with the
-                distribution.</li>
-                <li>Neither the name of Google Inc. nor the names of its
-                contributors may be used to endorse or promote products derived from
-                this software without specific prior written permission.</li>
-                </ul>
-                <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
-              </paper-material>
-            </section>
+                  <li>Redistributions of source code must retain the above copyright
+                    notice, this list of conditions and the following disclaimer.</li>
+                    <li>Redistributions in binary form must reproduce the above
+                      copyright notice, this list of conditions and the following disclaimer
+                      in the documentation and/or other materials provided with the
+                      distribution.</li>
+                      <li>Neither the name of Google Inc. nor the names of its
+                        contributors may be used to endorse or promote products derived from
+                        this software without specific prior written permission.</li>
+                      </ul>
+                      <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+                    </paper-material>
+                  </section>
 
-            <section data-route="users" tabindex="-1">
-              <paper-material elevation="1">
-                <h1 class="page-title" tabindex="-1">Users</h1>
-              </paper-material>
-            </section>
+                </iron-pages>
+              </div>
+            </paper-scroll-header-panel>
+          </paper-drawer-panel>
 
-            <section data-route="user-info" tabindex="-1">
-              <paper-material elevation="-1">
-                <h1 class="page-title" tabindex="-1">User: {{params.name}}</h1>
-                <div>This is {{params.name}}'s section</div>
-              </paper-material>
-            </section>
+          <paper-toast id="toast">
+            <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
+          </paper-toast>
 
-            <section data-route="contact" tabindex="-1">
-              <paper-material elevation="1">
-                <h1 class="page-title" tabindex="-1">Contact</h1>
-                <p>This is the contact section</p>
-              </paper-material>
-            </section>
-          </iron-pages>
-        </div>
-      </paper-scroll-header-panel>
-    </paper-drawer-panel>
+          <!-- Uncomment next block to enable Service Worker support (1/2) -->
+          <!--
+          <paper-toast id="caching-complete"
+          duration="6000"
+          text="Caching complete! This app will work offline.">
+        </paper-toast>
 
-    <paper-toast id="toast">
-      <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
-    </paper-toast>
-
-    <!-- Uncomment next block to enable Service Worker support (1/2) -->
-    <!--
-    <paper-toast id="caching-complete"
-                 duration="6000"
-                 text="Caching complete! This app will work offline.">
-    </paper-toast>
-
-    <platinum-sw-register auto-register
-                          clients-claim
-                          skip-waiting
-                          base-uri="bower_components/platinum-sw/bootstrap"
-                          on-service-worker-installed="displayInstalledToast">
-      <platinum-sw-cache default-cache-strategy="fastest"
-                         cache-config-file="cache-config.json">
+        <platinum-sw-register auto-register
+        clients-claim
+        skip-waiting
+        base-uri="bower_components/platinum-sw/bootstrap"
+        on-service-worker-installed="displayInstalledToast">
+        <platinum-sw-cache default-cache-strategy="fastest"
+        cache-config-file="cache-config.json">
       </platinum-sw-cache>
     </platinum-sw-register>
-    -->
+  -->
 
-  </template>
+</template>
 
-  <!-- build:js scripts/app.js -->
-  <script src="scripts/app.js"></script>
-  <!-- endbuild-->
+<!-- build:js scripts/app.js -->
+<script src="scripts/app.js"></script>
+<!-- endbuild-->
 </body>
 
 </html>
