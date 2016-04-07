@@ -96,13 +96,21 @@ body {
 
 @media screen and (min-width:550px) {
   .home-banner {
-    height: 500px;
+    height: 450px;
+  }
+  #intro-big {
+    font-size: 70px;
+    line-height: 90px;
+  }
+  #intro-small {
+    font-size: 45px;
+    line-height: 45px;
   }
   .container {
     padding: 50px;
   }
   #top-home-container {
-    top: -120px;
+    top: -160px;
   }
   #hashtags {
     top: 60px;
