@@ -174,9 +174,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
               <section data-route="matches" tabindex="-1">
                 <paper-tabs id="match-tabs" selected="{{selected}}">
-                  <paper-tab>QUALIFICATION</paper-tab>
-                  <paper-tab>ELIMINATION</paper-tab>
-                  <paper-tab>RANKINGS</paper-tab>
+                  <paper-tab>UPCOMING</paper-tab>
+                  <paper-tab>FINISHED</paper-tab>
                 </paper-tabs>
                 <style is="custom-style">
                 paper-tabs {
@@ -194,18 +193,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <iron-pages id="matches-page" selected="{{selected}}">
                   <div>
                     <paper-material elevation="1">
-                      <!-- <my-greeting></my-greeting> -->
                       <match-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-number="1"></match-list>
                     </paper-material>
                   </div>
                   <div>
                     <paper-material elevation="1">
-                      <match-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-number="4"></match-list>
-                    </paper-material>
-                  </div>
-                  <div>
-                    <paper-material elevation="1">
-                      <team-list></team-list>
+                      <match-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-number="1" completed></match-list>
                     </paper-material>
                   </div>
                 </iron-pages>

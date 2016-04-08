@@ -35,6 +35,7 @@ Polymer({
   properties: {
     googleSheetsKey: String,
     sheetNumber: String,
+    completed: Boolean,
     matches: {
       type: Array,
       notify: true,
@@ -88,6 +89,7 @@ Polymer({
             } else {
               matchCompleted = false;
             }
+            if ( (matchCompleted || context.completed) && !(matchCompleted && context.completed) ) { continue; }
             context.push('matches', {
               blueTeams: blueTeams,
               goldTeams: goldTeams,
