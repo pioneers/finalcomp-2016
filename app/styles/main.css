@@ -58,7 +58,7 @@ body {
   padding: 5px;
 }
 
-#top-home-container {
+#shift-up {
   position: relative;
   top: -100px;
 }
@@ -76,6 +76,11 @@ body {
 #intro-small {
   font-size: 25px;
   font-weight: lighter;
+}
+
+google-youtube {
+  width: 100%;
+  height: 200px;
 }
 
 #hashtags {
@@ -109,12 +114,16 @@ body {
   .container {
     padding: 50px;
   }
-  #top-home-container {
+  #shift-up {
     top: -160px;
   }
   #hashtags {
     top: 60px;
     left: 60px;
     font-size: 40px;
+  }
+  google-youtube {
+    height: 400px;
+    margin-top: 30px;
   }
 }
