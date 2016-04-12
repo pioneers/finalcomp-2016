@@ -17,7 +17,9 @@
 
     <template is="dom-repeat" items="{{matches}}">
       <li>
-        <match-listing blue-teams="{{item.blueTeams}}"
+        <match-listing
+        match-number="{{item.matchNumber}}"
+        blue-teams="{{item.blueTeams}}"
         gold-teams="{{item.goldTeams}}"
         time="{{item.time}}"
         blue-score="{{item.blueScore}}"
@@ -76,6 +78,8 @@ Polymer({
             content = content.replace(/(\r\n|\n|\r)/gm,"")
             content = '{"' + content + '"}';
             match = JSON.parse(content);
+            var matchNumber = entries[i]["title"]["$t"];
+            if (matchNumber.substring(0, 3) == "Row") {matchNumber = "";}
             var blueTeams = [{first: match["blue1name"], last: match["blue2name"]}];
             if (!blueTeams[0]["first"]) { break; }
             var goldTeams = [{first: match["gold1name"], last: match["gold2name"]}];
@@ -91,6 +95,7 @@ Polymer({
             }
             if ( (matchCompleted || context.completed) && !(matchCompleted && context.completed) ) { continue; }
             context.push('matches', {
+              matchNumber: matchNumber,
               blueTeams: blueTeams,
               goldTeams: goldTeams,
               time: time,

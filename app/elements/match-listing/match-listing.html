@@ -10,6 +10,8 @@
         font-size: 14px;
       }
       #left {
+        display: flex;
+        align-items: center;
         padding-left: 5px;
       }
       #right {
@@ -47,6 +49,17 @@
         background-repeat: no-repeat;
         background-position: center;
       }
+      #blue-teams {
+        border-left: 2px solid #2B3D62;
+        padding-left: 10px;
+      }
+      #gold-teams {
+        border-left: 2px solid #c7aa36;
+        padding-left: 10px;
+      }
+      #match-number {
+        margin-right: 20px;
+      }
       @media screen and (min-width:550px) {
         paper-item {
           font-size: 15px;
@@ -56,6 +69,9 @@
         }
         a {
           margin-top: 10px;
+        }
+        span:nth-of-type(2) {
+          margin-top: 20px;
         }
       }
     </style>
@@ -70,12 +86,15 @@
     <paper-item>
 
       <div id="left">
+        <div id="match-number">{{matchNumber}}</div>
+        <div>
         <template is="dom-repeat" items="{{blueTeams}}">
           <span id="blue-teams">{{item.first}} <br> {{item.last}}</span>
         </template>
         <template is="dom-repeat" items="{{goldTeams}}">
           <span id="gold-teams">{{item.first}} <br> {{item.last}}</span>
         </template>
+        </div>
       </div>
 
       <div id="right">
@@ -104,6 +123,7 @@
     Polymer({
       is: "match-listing",
       properties: {
+        matchNumber: Number,
         blueTeams: Array,
         goldTeams: Array,
         time: String,
