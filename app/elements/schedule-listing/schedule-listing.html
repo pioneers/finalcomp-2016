@@ -1,0 +1,60 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="schedule-listing">
+  <template>
+    <style>
+      paper-item {
+        justify-content: flex-start;
+        padding: 20px 5px;
+        font-size: 14px;
+      }
+      #left {
+        display: flex;
+        align-content: flex-end;
+        flex-direction: column;
+      }
+      #center {
+        display: flex;
+        align-content: flex-start;
+        flex-direction: column;
+      }
+
+      @media screen and (min-width:550px) {
+        paper-item {
+          font-size: 15px;
+        }
+      }
+    </style>
+
+    <!-- For maintaining the color of the paper-item when pressed -->
+    <style is="custom-style">
+      paper-item {
+        --paper-item-focused-before: {
+          opacity: 0;
+        };
+      }
+    </style>
+
+    <paper-item>
+      <div id="left">
+        <span>{{startTime}}</span>
+        <span>{{endTime}}</span>
+      </div>
+      <div id="center">
+        <span>{{eventName}}</span>
+        <span>{{location}}</span>
+      </div>
+    </paper-item>
+  </template>
+  <script>
+  Polymer({
+    is: "schedule-listing",
+    properties: {
+      startTime: String,
+      endTime: String,
+      eventName: String,
+      location: String
+    }
+  });
+  </script>
+</dom-module>

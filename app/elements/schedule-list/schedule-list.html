@@ -1,0 +1,84 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../schedule-listing/schedule-listing.html">
+<script src="../../scripts/jquery-2.2.2.min.js"></script>
+
+<dom-module id="schedule-list">
+  <template>
+  <style>
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li + li {
+    border-top: solid 1px #BDBDBD;
+  }
+  </style>
+  <ul>
+
+    <template is="dom-repeat" items="{{events}}">
+      <li>
+        <schedule-listing
+          start-time="{{item.startTime}}"
+          end-time="{{item.endTime}}"
+          event-name="{{item.eventName}}"
+          location="{{item.location}}">
+        </schedule-listing>
+      </li>
+    </template>
+  </ul>
+</template>
+<script>
+Polymer({
+  is: "schedule-list",
+  properties: {
+    googleSheetsKey: String,
+    sheetNumber: String,
+    events: {
+      type: Array,
+      notify: true,
+      reflectToAttribute: true
+    }
+  },
+  ready: function() {
+    this.events = [];
+
+    var xmlhttp = new XMLHttpRequest();
+    var spreadsheetUrl = `https://spreadsheets.google.com/feeds/list/${this.googleSheetsKey}/${this.sheetNumber}/public/basic?alt=json`;
+    var update = function(xmlhttp, context) {
+      return function() {
+        if (xmlhttp.readyState == 4 & xmlhttp.status == 200) {
+          var myArr = JSON.parse(xmlhttp.responseText);
+          var entries = myArr['feed']['entry'];
+          for (i = 0; i < entries.length; i++) {
+
+            var content = entries[i]["content"]["$t"];
+            // Inserts quotes so that the JSON can be evaluated as a JS object
+            content = content.replace(/([:,]\s)/g, '"$1"');
+            // Catches accidental new lines in Google Sheet
+            content = content.replace(/(\r\n|\n|\r)/gm,"");
+            content = '{"' + content + '"}';
+
+            item = JSON.parse(content);
+            var startTime = item["starttime"];
+            var endTime = item["endtime"];
+            var eventName = item["eventname"];
+            var location = item["location"];
+            context.push('events', {
+              startTime: startTime,
+              endTime: endTime,
+              eventName: eventName,
+              location: location
+            });
+          }
+        }
+      };
+    };
+    xmlhttp.onreadystatechange = update(xmlhttp, this);
+    xmlhttp.open("GET", spreadsheetUrl, true);
+    xmlhttp.send();
+  }
+});
+
+
+</script>
+</dom-module>
