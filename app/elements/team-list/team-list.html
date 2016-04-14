@@ -22,7 +22,9 @@
           name="{{item.name}}"
           wins="{{item.wins}}"
           ties="{{item.ties}}"
-          losses="{{item.losses}}">
+          losses="{{item.losses}}"
+          rankpts="{{item.rankpts}}"
+          qualpts="{{item.qualpts}}">
         </team-listing>
       </li>
     </template>
@@ -66,12 +68,16 @@ Polymer({
             var wins = team["wins"];
             var ties = team["ties"];
             var losses = team["losses"];
+            var rankpts = team["rankingcalories"];
+            var qualpts = team["qualificationcalories"];
             context.push('teams', {
               rank: rank,
               name: name,
               wins: wins,
               ties: ties,
-              losses: losses
+              losses: losses,
+              rankpts: rankpts,
+              qualpts: qualpts
             });
           }
         }

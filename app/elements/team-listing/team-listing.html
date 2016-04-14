@@ -4,23 +4,34 @@
   <template>
     <style>
       paper-item {
-        justify-content: space-between;
+        display: table;
+        width: 100%;
+        height: 100%;
         padding: 20px 5px;
         font-size: 14px;
       }
-      img {
-        border-radius: 50%;
-        margin: 0 20px;
-        height: 50px;
-        width: 50px;
+      .label {
+        color: grey;
+        font-style: italic;
       }
-      p {
-        line-height: 20px;
-        margin: 0;
-        padding: 0;
+
+      .schools {
+        display: table-cell;
+        /* vertical-align: middle; */
+        width: 40%;
       }
+
       .labels {
-        margin-right: 5px;
+        display: table-cell;
+        /* vertical-align: middle; */
+        text-align: right;
+        padding-right: 5px;
+      }
+
+      .numbers {
+        display: table-cell;
+        /* vertical-align: middle; */
+        padding-right: 5px;
       }
 
       @media screen and (min-width:550px) {
@@ -41,13 +52,24 @@
   </style>
 
     <paper-item>
-      <div id="left">{{rank}} {{name}}</div>
-      <div id="right" style="display:flex;text-align:right;">
-        <div id="labels" style="margin-right:5px;color:grey;font-style:italic;">Wins:<br>Ties:<br>Losses:</div>
-        <div id="scores">{{wins}}<br>{{ties}}<br>{{losses}}</div>
-        <!-- <div id="wins"><span class="labels">W:</span>{{wins}}</div>
-        <div id="ties"><span class="labels">T:</span>{{ties}}</div>
-        <div id="losses"><span class="labels">L:</span>{{losses}}</div> -->
+      <div class="schools">{{rank}} {{name}}</div>
+      <div class="labels">
+        <div class="label">Rank Pts:</div>
+        <div class="label">Qual Pts:</div>
+      </div>
+      <div class="numbers">
+        <div class="score">{{rankpts}}</div>
+        <div class="score">{{qualpts}}</div>
+      </div>
+      <div class="labels">
+        <div class="label">Wins:</div>
+        <div class="label">Ties:</div>
+        <div class="label">Losses:</div>
+      </div>
+      <div class="numbers">
+        <div class="score">{{wins}}</div>
+        <div class="score">{{ties}}</div>
+        <div class="score">{{losses}}</div>
       </div>
     </paper-item>
   </template>
@@ -59,7 +81,9 @@
         name: String,
         wins: String,
         ties: String,
-        losses: String
+        losses: String,
+        rankpts: String,
+        qualpts: String
       }
     });
   </script>
