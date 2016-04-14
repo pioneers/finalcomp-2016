@@ -3,9 +3,10 @@
 <dom-module id="team-listing">
   <template>
     <style>
-      .listing-wrapper {
-        display: flex;
-        align-items: center;
+      paper-item {
+        justify-content: space-between;
+        padding: 20px 5px;
+        font-size: 14px;
       }
       img {
         border-radius: 50%;
@@ -14,15 +15,20 @@
         width: 50px;
       }
       p {
-        line-height: 90px;
+        line-height: 20px;
         margin: 0;
         padding: 0;
-        font-size: 20px;
-        font-weight: 400;
       }
-      span {
-        margin-right: 20px;
+      .labels {
+        margin-right: 5px;
       }
+
+      @media screen and (min-width:550px) {
+        paper-item {
+          font-size: 15px;
+        }
+      }
+
     </style>
 
     <!-- For maintaining the color of the paper-item when pressed -->
@@ -35,18 +41,25 @@
   </style>
 
     <paper-item>
-      <paper-ripple></paper-ripple>
-      <img src="{{img}}" alt="">
-      <p><span>{{name}}</span>{{email}}</p>
+      <div id="left">{{rank}} {{name}}</div>
+      <div id="right" style="display:flex;text-align:right;">
+        <div id="labels" style="margin-right:5px;color:grey;font-style:italic;">Wins:<br>Ties:<br>Losses:</div>
+        <div id="scores">{{wins}}<br>{{ties}}<br>{{losses}}</div>
+        <!-- <div id="wins"><span class="labels">W:</span>{{wins}}</div>
+        <div id="ties"><span class="labels">T:</span>{{ties}}</div>
+        <div id="losses"><span class="labels">L:</span>{{losses}}</div> -->
+      </div>
     </paper-item>
   </template>
   <script>
     Polymer({
       is: "team-listing",
       properties: {
+        rank: String,
         name: String,
-        email: String,
-        img: String
+        wins: String,
+        ties: String,
+        losses: String
       }
     });
   </script>

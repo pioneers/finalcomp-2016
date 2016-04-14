@@ -15,9 +15,15 @@
   </style>
   <ul>
 
-    <template is="dom-repeat" items="{{matches}}">
+    <template is="dom-repeat" items="{{teams}}">
       <li>
-        <team-listing name="{{item.name}}" email="{{item.email}}" img="{{item.img}}"></team-listing>
+        <team-listing
+          rank="{{item.rank}}"
+          name="{{item.name}}"
+          wins="{{item.wins}}"
+          ties="{{item.ties}}"
+          losses="{{item.losses}}">
+        </team-listing>
       </li>
     </template>
   </ul>
@@ -26,53 +32,53 @@
 Polymer({
   is: "team-list",
   properties: {
-    matches: {
+    googleSheetsKey: String,
+    sheetNumber: String,
+    teams: {
       type: Array,
       notify: true,
       reflectToAttribute: true
     }
   },
   ready: function() {
-    this.matches = []
+    this.teams = [];
 
     var xmlhttp = new XMLHttpRequest();
-    var url = "https://spreadsheets.google.com/feeds/list/1sS_1lnoimrSNXpUduBsPu3ydLvFEQBooG393O-WKhxc/od6/public/basic?alt=json";
-
+    var spreadsheetUrl = `https://spreadsheets.google.com/feeds/list/${this.googleSheetsKey}/${this.sheetNumber}/public/basic?alt=json`;
     var update = function(xmlhttp, context) {
       return function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        if (xmlhttp.readyState == 4 & xmlhttp.status == 200) {
           var myArr = JSON.parse(xmlhttp.responseText);
           var entries = myArr['feed']['entry'];
-
           for (i = 0; i < entries.length; i++) {
-            teamNumber = entries[i]['title']['$t'];
-            startIndex = 10
-            endIndex = 0
-            content = entries[i]['content']['$t'];
-            for (x = 0; x < 50; x++) {
-              if (content.substring(x, x+1) == ',') {
-                endIndex = x;
 
+            var content = entries[i]["content"]["$t"];
+            // Inserts quotes so that the JSON can be evaluated as a JS object
+            content = content.replace(/([:,]\s)/g, '"$1"');
+            // Catches accidental new lines in Google Sheet
+            content = content.replace(/(\r\n|\n|\r)/gm,"");
+            content = '{"' + content + '"}';
 
-
-
-            teamName = content.substring(startIndex, endIndex);
-            imgLink = content.substring(endIndex+10);
-            context.push('matches', {
-              name: teamNumber,
-              email: teamName,
-              img: imgLink,
+            team = JSON.parse(content);
+            var rank = entries[i]["title"]["$t"];
+            if (rank.substring(0, 3) == "Row") {rank = "";}
+            var name = team["teamname"];
+            var wins = team["wins"];
+            var ties = team["ties"];
+            var losses = team["losses"];
+            context.push('teams', {
+              rank: rank,
+              name: name,
+              wins: wins,
+              ties: ties,
+              losses: losses
             });
-            break;
           }
-          }
-        }
         }
       };
     };
-
     xmlhttp.onreadystatechange = update(xmlhttp, this);
-    xmlhttp.open("GET", url, true);
+    xmlhttp.open("GET", spreadsheetUrl, true);
     xmlhttp.send();
   }
 });
