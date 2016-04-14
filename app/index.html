@@ -88,14 +88,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <span>Home</span>
           </a>
 
-          <a data-route="users" href="{{baseUrl}}users">
+          <a data-route="schedule" href="{{baseUrl}}schedule">
             <!-- <iron-icon icon="info"></iron-icon> -->
-            <span>Users</span>
+            <span>Schedule</span>
           </a>
 
-          <a data-route="matches" href="{{baseUrl}}matches">
+          <a data-route="qual-matches" href="{{baseUrl}}qual-matches">
             <!-- <iron-icon icon="mail"></iron-icon> -->
-            <span>Matches</span>
+            <span>Qualification Matches</span>
+          </a>
+
+          <a data-route="elim-matches" href="{{baseUrl}}elim-matches">
+            <!-- <iron-icon icon="mail"></iron-icon> -->
+            <span>Elimination Matches</span>
+          </a>
+
+          <a data-route="rankings" href="{{baseUrl}}rankings">
+            <!-- <iron-icon icon="mail"></iron-icon> -->
+            <span>Rankings</span>
+          </a>
+
+          <a data-route="livestream" href="{{baseUrl}}livestream">
+            <!-- <iron-icon icon="mail"></iron-icon> -->
+            <span>Livestream</span>
           </a>
 
           <a data-route="license" href="{{baseUrl}}license">
@@ -181,9 +196,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
               </section>
 
-              <section data-route="users" tabindex="-1">
+              <section data-route="schedule" tabindex="-1">
                 <paper-material elevation="1">
-                  <h1 class="page-title" tabindex="-1">Users</h1>
+                  <h1 class="page-title" tabindex="-1">Schedule</h1>
                 </paper-material>
               </section>
 
@@ -194,7 +209,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </paper-material>
               </section>
 
-              <section data-route="matches" tabindex="-1">
+              <section data-route="qual-matches" tabindex="-1">
                 <paper-tabs id="match-tabs" selected="{{selected}}">
                   <paper-tab>UPCOMING</paper-tab>
                   <paper-tab>FINISHED</paper-tab>
@@ -237,9 +252,65 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-material>
             </section>
 
+            <section data-route="elim-matches" tabindex="-1">
+              <paper-tabs id="match-tabs" selected="{{selected}}">
+                <paper-tab>UPCOMING</paper-tab>
+                <paper-tab>FINISHED</paper-tab>
+              </paper-tabs>
+              <style is="custom-style">
+              paper-tabs {
+                /*--pie-blue: #2B3D62;
+                --paper-tab-ink: var(--pie-blue);
+                --paper-tabs-selection-bar-color: var(--pie-blue);*/
+                background: #2B3D62;
+                color: white;
+                padding: 1px;
+                position: relative;
+                top: -20px;
+              }
+              </style>
+
+              <iron-pages id="matches-page" selected="{{selected}}">
+                <div>
+                  <paper-material elevation="1">
+                    <match-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-number="4"></match-list>
+                  </paper-material>
+                  <paper-fab icon="icons:refresh" elevation="3" style="position:fixed;bottom:10px;right:10px;"></paper-fab>
+                </div>
+                <div>
+                  <paper-material elevation="1">
+                    <match-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-number="4" completed></match-list>
+                  </paper-material>
+                  <paper-fab icon="icons:refresh" elevation="3" style="position:fixed;bottom:10px;right:10px;"></paper-fab>
+                </div>
+              </iron-pages>
+
+
+              <script>
+              document.addEventListener('WebComponentsReady', function () {
+                var template = document.querySelector('template[is="dom-bind"]');
+                template.selected = 0; // selected is an index by default
+              });
+              </script>
+            </paper-material>
+          </section>
+
+          <section data-route="rankings" tabindex="-1">
+            <paper-material elevation="1">
+              <h2>rankings</h2>
+            </paper-material>
+          </section>
+
+          <section data-route="livestream" tabindex="-1">
+            <paper-material elevation="1">
+              <h2>livestream</h2>
+            </paper-material>
+          </section>
+
             <section data-route="license" tabindex="-1">
               <paper-material elevation="1">
-                <!-- <team-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-number="3"></team-list> -->
+                <team-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-number="3"></team-list>
+                <schedule-list google-sheets-key="1EXbR1QXeXk3z_xzU_UV5HKcFo0TiAgpmHWzAUoI9mto" sheet-number="1"></schedule-list>
                 <h2 id="license">License</h2>
                 <p>Everything in this repo is BSD style license unless otherwise specified.</p>
                 <p>Copyright (c) 2015 The Polymer Authors. All rights reserved.</p>
