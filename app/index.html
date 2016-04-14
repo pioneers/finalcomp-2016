@@ -198,16 +198,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
               <section data-route="schedule" tabindex="-1">
                 <paper-material elevation="1">
-                  <h1 class="page-title" tabindex="-1">Schedule</h1>
+                  <schedule-list google-sheets-key="1EXbR1QXeXk3z_xzU_UV5HKcFo0TiAgpmHWzAUoI9mto" sheet-number="1"></schedule-list>
                 </paper-material>
               </section>
 
-              <section data-route="user-info" tabindex="-1">
+              <!-- <section data-route="user-info" tabindex="-1">
                 <paper-material elevation="-1">
                   <h1 class="page-title" tabindex="-1">User: {{params.name}}</h1>
                   <div>This is {{params.name}}'s section</div>
                 </paper-material>
-              </section>
+              </section> -->
 
               <section data-route="qual-matches" tabindex="-1">
                 <paper-tabs id="match-tabs" selected="{{selected}}">
@@ -297,7 +297,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <section data-route="rankings" tabindex="-1">
             <paper-material elevation="1">
-              <h2>rankings</h2>
+              <team-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-number="3"></team-list>
             </paper-material>
           </section>
 
@@ -309,8 +309,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <section data-route="license" tabindex="-1">
               <paper-material elevation="1">
-                <team-list google-sheets-key="16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So" sheet-number="3"></team-list>
-                <schedule-list google-sheets-key="1EXbR1QXeXk3z_xzU_UV5HKcFo0TiAgpmHWzAUoI9mto" sheet-number="1"></schedule-list>
                 <h2 id="license">License</h2>
                 <p>Everything in this repo is BSD style license unless otherwise specified.</p>
                 <p>Copyright (c) 2015 The Polymer Authors. All rights reserved.</p>
