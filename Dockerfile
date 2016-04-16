@@ -1,4 +1,3 @@
-#FROM node:5.10.1
 FROM danieljiang/gulp:1.0
 MAINTAINER <danieljiang@pioneers.berkeley.edu>
 
