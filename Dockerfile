@@ -1,5 +1,5 @@
 # Base image is a Node image with gulp installed globally
-FROM danieljiang/gulp:1.0
+FROM danieljiang/gulp:2.0
 
 MAINTAINER <danieljiang@pioneers.berkeley.edu>
 
@@ -15,6 +15,8 @@ EXPOSE 5000
 
 # Specify dir as working directory
 WORKDIR dir
+
+RUN npm install
 
 ENTRYPOINT ["gulp"]
 CMD ["serve"]
