@@ -7,9 +7,6 @@ ENV dir = /usr/src/
 # Add files from project folder to working directory
 ADD . dir
 
-# Create mount point for working directory
-VOLUME dir
-
 # Expose port 5000
 EXPOSE 5000
 
