@@ -1,4 +1,6 @@
+# Base image is a Node image with gulp installed globally
 FROM danieljiang/gulp:1.0
+
 MAINTAINER <danieljiang@pioneers.berkeley.edu>
 
 # Set working directory as a variable
