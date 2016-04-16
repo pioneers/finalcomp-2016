@@ -1,9 +1,12 @@
-FROM node:5.10.1
+#FROM node:5.10.1
+FROM danieljiang/gulp:1.0
 MAINTAINER <danieljiang@pioneers.berkeley.edu>
-
-RUN npm install -g gulp
 
 ADD . /usr/src/
 VOLUME /usr/src/
 
 EXPOSE 5000
+
+WORKDIR /usr/src/
+ENTRYPOINT ["gulp"]
+CMD ["serve"]
