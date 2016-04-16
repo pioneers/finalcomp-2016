@@ -12,11 +12,18 @@
         display: flex;
         align-content: flex-end;
         flex-direction: column;
+        margin-right: 10px;
+        padding-right: 10px;
+        border-right: 1px solid grey;
       }
       #center {
         display: flex;
         align-content: flex-start;
         flex-direction: column;
+      }
+
+      .light-text {
+        color: grey;
       }
 
       @media screen and (min-width:550px) {
@@ -38,11 +45,11 @@
     <paper-item>
       <div id="left">
         <span>{{startTime}}</span>
-        <span>{{endTime}}</span>
+        <span class="light-text">{{endTime}}</span>
       </div>
       <div id="center">
         <span>{{eventName}}</span>
-        <span>{{location}}</span>
+        <span class="light-text">{{location}}</span>
       </div>
     </paper-item>
   </template>
