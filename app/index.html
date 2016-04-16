@@ -197,9 +197,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </section>
 
               <section data-route="schedule" tabindex="-1">
-                <paper-material elevation="1">
-                  <schedule-list google-sheets-key="1EXbR1QXeXk3z_xzU_UV5HKcFo0TiAgpmHWzAUoI9mto" sheet-number="1"></schedule-list>
-                </paper-material>
+                <paper-tabs id="match-tabs" selected="{{selected}}">
+                  <paper-tab>SATURDAY</paper-tab>
+                  <paper-tab>SUNDAY</paper-tab>
+                </paper-tabs>
+
+                <iron-pages id="matches-page" selected="{{selected}}">
+                  <div>
+                    <paper-material elevation="1">
+                      <schedule-list google-sheets-key="1EXbR1QXeXk3z_xzU_UV5HKcFo0TiAgpmHWzAUoI9mto" sheet-number="1"></schedule-list>
+                    </paper-material>
+                  </div>
+                  <div>
+                    <paper-material elevation="1">
+                      <schedule-list google-sheets-key="1EXbR1QXeXk3z_xzU_UV5HKcFo0TiAgpmHWzAUoI9mto" sheet-number="2"></schedule-list>
+                    </paper-material>
+                  </div>
+                </iron-pages>
               </section>
 
               <!-- <section data-route="user-info" tabindex="-1">
