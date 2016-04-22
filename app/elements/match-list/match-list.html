@@ -15,6 +15,10 @@
   </style>
   <ul>
 
+    <template is="dom-if" if="{{noMatches}}">
+      <p>No matches to see right now. Check back here later!</p>
+    </template>
+
     <template is="dom-repeat" items="{{matches}}">
       <li>
         <match-listing
@@ -40,6 +44,7 @@ Polymer({
     googleSheetsKey: String,
     sheetNumber: String,
     completed: Boolean,
+    noMatches: Boolean,
     matches: {
       type: Array,
       notify: true,
@@ -110,6 +115,12 @@ Polymer({
               matchCompleted: matchCompleted,
               videoLink: videoLink
             });
+          }
+          console.log(context.matches);
+          if (context.matches.length == 0) {
+            context.noMatches = true;
+          } else {
+            context.noMatches = false;
           }
         }
       }
