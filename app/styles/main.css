@@ -48,8 +48,8 @@ body {
   height: 250px;
   background-image: url(../images/spring-comp-2015.jpg);
   background-size: cover;
-  background-position: center;
-  background-color: rgba(0, 0, 0, .3);
+  background-position: 50% 90%;
+  background-color: rgba(0, 0, 0, .35);
 	background-blend-mode: multiply;
   color: white;
 }
