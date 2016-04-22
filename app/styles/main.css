@@ -92,6 +92,11 @@ google-youtube {
   left:20px;
 }
 
+.social-media a {
+  text-decoration: none;
+  color: #333;
+}
+
 #matches-page {
   padding: 0;
 }
