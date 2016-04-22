@@ -49,6 +49,10 @@
         background-repeat: no-repeat;
         background-position: center;
       }
+      .alliance-numbers {
+        font-style: italic;
+        font-weight: bold;
+      }
       #blue-teams {
         border-left: 2px solid #2B3D62;
         padding-left: 10px;
@@ -89,10 +93,20 @@
         <div id="match-number">{{matchNumber}}</div>
         <div>
         <template is="dom-repeat" items="{{blueTeams}}">
-          <span id="blue-teams">{{item.first}} <br> {{item.last}}</span>
+          <span id="blue-teams">
+            <template is="dom-if" if="{{blueAllianceNumber}}">
+            <span class="alliance-numbers">Alliance {{blueAllianceNumber}}</span>
+            </template>
+            {{item.first}} <br> {{item.last}}
+          </span>
         </template>
         <template is="dom-repeat" items="{{goldTeams}}">
-          <span id="gold-teams">{{item.first}} <br> {{item.last}}</span>
+          <span id="gold-teams">
+            <template is="dom-if" if="{{goldAllianceNumber}}">
+            <span class="alliance-numbers">Alliance {{goldAllianceNumber}}</span>
+            </template>
+            {{item.first}} <br> {{item.last}}
+          </span>
         </template>
         </div>
       </div>
@@ -124,6 +138,8 @@
       is: "match-listing",
       properties: {
         matchNumber: Number,
+        blueAllianceNumber: Number,
+        goldAllianceNumber: Number,
         blueTeams: Array,
         goldTeams: Array,
         time: String,

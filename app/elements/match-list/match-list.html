@@ -19,6 +19,8 @@
       <li>
         <match-listing
         match-number="{{item.matchNumber}}"
+        blue-alliance-number="{{item.blueAllianceNumber}}"
+        gold-alliance-number="{{item.goldAllianceNumber}}"
         blue-teams="{{item.blueTeams}}"
         gold-teams="{{item.goldTeams}}"
         time="{{item.time}}"
@@ -80,6 +82,8 @@ Polymer({
             match = JSON.parse(content);
             var matchNumber = entries[i]["title"]["$t"];
             if (matchNumber.substring(0, 3) == "Row") {matchNumber = "";}
+            var blueAllianceNumber = match["bluealliancenumber"];
+            var goldAllianceNumber = match["goldalliancenumber"];
             var blueTeams = [{first: match["blue1name"], last: match["blue2name"]}];
             if (!blueTeams[0]["first"]) { break; }
             var goldTeams = [{first: match["gold1name"], last: match["gold2name"]}];
@@ -96,6 +100,8 @@ Polymer({
             if ( (matchCompleted || context.completed) && !(matchCompleted && context.completed) ) { continue; }
             context.push('matches', {
               matchNumber: matchNumber,
+              blueAllianceNumber: blueAllianceNumber,
+              goldAllianceNumber: goldAllianceNumber,
               blueTeams: blueTeams,
               goldTeams: goldTeams,
               time: time,
