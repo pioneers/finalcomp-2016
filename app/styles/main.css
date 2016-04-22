@@ -97,6 +97,11 @@ google-youtube {
   color: #333;
 }
 
+.social-media-icons {
+  height: 15px;
+  width: 15px;
+}
+
 #matches-page {
   padding: 0;
 }
