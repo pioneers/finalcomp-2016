@@ -1,0 +1,138 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../match-listing/match-listing.html">
+<script src="../../scripts/jquery-2.2.2.min.js"></script>
+
+<dom-module id="match-list-cards">
+  <template>
+  <style>
+  div {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  paper-material {
+    padding: 10px;
+    margin: 0 10px;
+  }
+  </style>
+  <div>
+
+    <template is="dom-if" if="{{noMatches}}">
+      <p>No matches to see right now. Check back here later!</p>
+    </template>
+
+    <template is="dom-repeat" items="{{matches}}">
+      <paper-material elevation="1" style="margin-top: 20px;width:400px;" >
+        <match-listing
+        match-number="{{item.matchNumber}}"
+        blue-alliance-number="{{item.blueAllianceNumber}}"
+        gold-alliance-number="{{item.goldAllianceNumber}}"
+        blue-teams="{{item.blueTeams}}"
+        gold-teams="{{item.goldTeams}}"
+        time="{{item.time}}"
+        blue-score="{{item.blueScore}}"
+        gold-score="{{item.goldScore}}"
+        match-completed="{{item.matchCompleted}}"
+        video-link="{{item.videoLink}}">
+        </match-listing>
+      </paper-material>
+  </template>
+</div>
+</template>
+<script>
+Polymer({
+  is: "match-list-cards",
+  properties: {
+    googleSheetsKey: String,
+    sheetNumber: String,
+    completed: Boolean,
+    noMatches: Boolean,
+    matches: {
+      type: Array,
+      notify: true,
+      reflectToAttribute: true
+    }
+  },
+  ready: function() {
+    // this.matches = [{
+    //   blueTeams: [{first: 'Balboa', last: 'Community Day'}],
+    //   goldTeams: [{first: 'Head-Royce', last: 'Encinal'}],
+    //   time: "Sat 11:39 AM",
+    //   blueScore: 2,
+    //   goldScore: 3,
+    //   matchCompleted: true
+    // }, {
+    //   blueTeams: [{first: 'Balboa', last: 'Community Day'}],
+    //   goldTeams: [{first: 'Head-Royce', last: 'Encinal'}],
+    //   time: "Sat 11:39 AM",
+    //   blueScore: 2,
+    //   goldScore: 3,
+    //   matchCompleted: false
+    // }]
+    this.matches = []
+
+    var xmlhttp = new XMLHttpRequest();
+    var scriptKey = "";
+    var scriptUrl = "https://spreadsheets.google.com/feeds/list/16V8AS5EyBu2pgGJGZ2CXfDpkDQEB99Ftw8E8vKDv0So/od6/public/basic?alt=json";
+    var scriptUrl = `https://spreadsheets.google.com/feeds/list/${this.googleSheetsKey}/${this.sheetNumber}/public/basic?alt=json`;
+    var update = function(xmlhttp, context) {
+      return function() {
+        if (xmlhttp.readyState == 4 & xmlhttp.status == 200) {
+          var myArr = JSON.parse(xmlhttp.responseText);
+          var entries = myArr['feed']['entry'];
+          for (i = 0; i < entries.length; i++) {
+            var content = entries[i]["content"]["$t"];
+            content = content.replace(/([:,]\s)/g, '"$1"');
+            // Catches accidental new lines in Google Sheet
+            content = content.replace(/(\r\n|\n|\r)/gm,"")
+            content = '{"' + content + '"}';
+            match = JSON.parse(content);
+            var matchNumber = entries[i]["title"]["$t"];
+            if (matchNumber.substring(0, 3) == "Row") {matchNumber = "";}
+            var blueAllianceNumber = match["bluealliancenumber"];
+            var goldAllianceNumber = match["goldalliancenumber"];
+            var blueTeams = [{first: match["blue1name"], last: match["blue2name"]}];
+            if (!blueTeams[0]["first"]) { break; }
+            var goldTeams = [{first: match["gold1name"], last: match["gold2name"]}];
+            var time = match["matchtime"];
+            var blueScore = match["bluescore"];
+            var goldScore = match["goldscore"];
+            var matchCompleted = match["matchcompleted"];
+            var videoLink = match["videourl"];
+            if (matchCompleted == 1) {
+              matchCompleted = true;
+            } else {
+              matchCompleted = false;
+            }
+            if ( (matchCompleted || context.completed) && !(matchCompleted && context.completed) ) { continue; }
+            context.push('matches', {
+              matchNumber: matchNumber,
+              blueAllianceNumber: blueAllianceNumber,
+              goldAllianceNumber: goldAllianceNumber,
+              blueTeams: blueTeams,
+              goldTeams: goldTeams,
+              time: time,
+              blueScore: blueScore,
+              goldScore: goldScore,
+              matchCompleted: matchCompleted,
+              videoLink: videoLink
+            });
+          }
+          console.log(context.matches);
+          if (context.matches.length == 0) {
+            context.noMatches = true;
+          } else {
+            context.noMatches = false;
+          }
+        }
+      }
+    };
+    xmlhttp.onreadystatechange = update(xmlhttp, this);
+    xmlhttp.open("GET", scriptUrl, true);
+    xmlhttp.send();
+  }
+});
+
+
+</script>
+</dom-module>
