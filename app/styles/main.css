@@ -79,9 +79,8 @@ body {
   font-weight: lighter;
 }
 
-google-youtube {
-  width: 100%;
-  height: 200px;
+.youtube-wrap {
+  display:flex; justify-content:center;
 }
 
 #hashtags {
@@ -136,5 +135,31 @@ google-youtube {
   google-youtube {
     height: 400px;
     margin-top: 30px;
+  }
+}
+
+/*
+* Livestream
+*/
+
+.video-wrap {
+  margin: 15px auto;
+  text-align: center;
+}
+
+.video-player, google-youtube {
+  width: 90%;
+  max-width: 800px;
+}
+
+@media screen and (min-width:500px) {
+  .video-player, google-youtube {
+    height: 275px;
+  }
+}
+
+@media screen and (min-width:1100px) {
+  .video-player, google-youtube {
+    height: 460px;
   }
 }
