@@ -19936,16 +19936,19 @@ module.exports = Array.isArray || function (arr) {
   /* Application theme */
 
   :root {
+    --pie-blue: #2B3D62;
+    --pie-gold: #c7aa36;
+
     --primary-text-color: var(--paper-grey-900);
     --primary-background-color: #ffffff;
     --secondary-text-color: #737373;
     --disabled-text-color: #9b9b9b;
     --divider-color: #dbdbdb;
     /*--primary-color: var(--paper-indigo-500);*/
-    --primary-color: #2B3D62;
+    --primary-color: var(--pie-blue);
     --light-primary-color: var(--paper-indigo-100);
     --dark-primary-color: var(--paper-indigo-700);
-    --accent-color: var(--paper-pink-a200);
+    --accent-color: var(--pie-gold);
     --light-accent-color: var(--paper-pink-a100);
     --dark-accent-color: var(--paper-pink-a400);
 
@@ -20291,7 +20294,6 @@ module.exports = Array.isArray || function (arr) {
         height: 100%;
         padding: 20px 5px;
         font-size: 14px;
-        flex-grow: 1;
       }
       .label {
         color: grey;
@@ -20519,11 +20521,11 @@ Polymer({
         font-weight: bold;
       }
       #blue-teams {
-        border-left: 2px solid #2B3D62;
+        border-left: 2px solid var(--pie-blue);
         padding-left: 10px;
       }
       #gold-teams {
-        border-left: 2px solid #c7aa36;
+        border-left: 2px solid var(--pie-gold);
         padding-left: 10px;
       }
       #match-number {
@@ -20634,8 +20636,8 @@ e=n.propHooks[b]),void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&
   }
   #refresh-fab {
     position: fixed;
-    bottom: 15px;
-    right: 15px;
+    bottom: 25px;
+    right: 25px;
   }
   </style>
   <ul>
@@ -21033,8 +21035,6 @@ e=n.propHooks[b]),void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&
   div {
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: space-between; */
-    /* flex-grow: 1; */
   }
   paper-material {
     padding: 10px;
