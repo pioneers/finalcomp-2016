@@ -1,0 +1,95 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../team-listing/team-listing.html">
+<script src="../../scripts/jquery-2.2.2.min.js"></script>
+
+<dom-module id="team-list-cards">
+  <template>
+  <style>
+  div {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  paper-material {
+    padding: 10px;
+    margin: 0 10px;
+  }
+  </style>
+  <div>
+
+    <template is="dom-repeat" items="{{teams}}">
+      <paper-material elevation="2" style="margin-top: 20px;width:300px;">
+        <team-listing
+          rank="{{item.rank}}"
+          name="{{item.name}}"
+          wins="{{item.wins}}"
+          ties="{{item.ties}}"
+          losses="{{item.losses}}"
+          rankpts="{{item.rankpts}}"
+          qualpts="{{item.qualpts}}">
+        </team-listing>
+      </paper-material>
+    </template>
+  </div>
+</template>
+<script>
+Polymer({
+  is: "team-list-cards",
+  properties: {
+    googleSheetsKey: String,
+    sheetNumber: String,
+    teams: {
+      type: Array,
+      notify: true,
+      reflectToAttribute: true
+    }
+  },
+  ready: function() {
+    this.teams = [];
+
+    var xmlhttp = new XMLHttpRequest();
+    var spreadsheetUrl = `https://spreadsheets.google.com/feeds/list/${this.googleSheetsKey}/${this.sheetNumber}/public/basic?alt=json`;
+    var update = function(xmlhttp, context) {
+      return function() {
+        if (xmlhttp.readyState == 4 & xmlhttp.status == 200) {
+          var myArr = JSON.parse(xmlhttp.responseText);
+          var entries = myArr['feed']['entry'];
+          for (i = 0; i < entries.length; i++) {
+
+            var content = entries[i]["content"]["$t"];
+            // Inserts quotes so that the JSON can be evaluated as a JS object
+            content = content.replace(/([:,]\s)/g, '"$1"');
+            // Catches accidental new lines in Google Sheet
+            content = content.replace(/(\r\n|\n|\r)/gm,"");
+            content = '{"' + content + '"}';
+
+            team = JSON.parse(content);
+            var rank = entries[i]["title"]["$t"];
+            if (rank.substring(0, 3) == "Row") {rank = "";}
+            var name = team["teamname"];
+            var wins = team["wins"];
+            var ties = team["ties"];
+            var losses = team["losses"];
+            var rankpts = team["rankingcalories"];
+            var qualpts = team["qualificationcalories"];
+            context.push('teams', {
+              rank: rank,
+              name: name,
+              wins: wins,
+              ties: ties,
+              losses: losses,
+              rankpts: rankpts,
+              qualpts: qualpts
+            });
+          }
+        }
+      };
+    };
+    xmlhttp.onreadystatechange = update(xmlhttp, this);
+    xmlhttp.open("GET", spreadsheetUrl, true);
+    xmlhttp.send();
+  }
+});
+
+
+</script>
+</dom-module>
