@@ -20291,6 +20291,7 @@ module.exports = Array.isArray || function (arr) {
         height: 100%;
         padding: 20px 5px;
         font-size: 14px;
+        flex-grow: 1;
       }
       .label {
         color: grey;
@@ -20633,8 +20634,8 @@ e=n.propHooks[b]),void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&
   }
   #refresh-fab {
     position: fixed;
-    bottom: 10px;
-    right: 10px;
+    bottom: 15px;
+    right: 15px;
   }
   </style>
   <ul>
@@ -21032,6 +21033,8 @@ e=n.propHooks[b]),void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&
   div {
     display: flex;
     flex-wrap: wrap;
+    /* justify-content: space-between; */
+    /* flex-grow: 1; */
   }
   paper-material {
     padding: 10px;
