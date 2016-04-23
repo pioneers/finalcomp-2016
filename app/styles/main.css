@@ -171,3 +171,7 @@ body {
     height: 460px;
   }
 }
+
+.monitor-page-heading {
+  margin-bottom: 80px;
+}
