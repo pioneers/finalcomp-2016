@@ -11,6 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-styles/typography.html">
 <link rel="import" href="../bower_components/paper-styles/color.html">
+<link rel="import" href="../bower_components/openSans/openSans.css">
 
 <style is="custom-style">
 
@@ -49,6 +50,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     /* paper-menu */
     --paper-menu-background-color: #fff;
     --menu-link-color: #111111;
+
+    --paper-font-common-base: {
+      font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    };
+
   }
 
   /* General styles */
@@ -56,6 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   body {
     @apply(--layout-fullbleed);
     @apply(--layout-vertical);
+    @apply(--paper-font-common-base);
   }
 
   .space {
