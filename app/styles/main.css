@@ -46,12 +46,20 @@ body {
 .home-banner {
   width: 100%;
   height: 250px;
-  background-image: url(../images/spring-comp-2015.jpg);
   background-size: cover;
-  background-position: 50% 90%;
+  background-position: center;
   background-color: rgba(0, 0, 0, .3);
 	background-blend-mode: multiply;
   color: white;
+}
+
+#hero-image {
+  background-image:url(../images/fall-comp-2015-h.jpg);
+}
+
+#brand-image {
+  background-image: url(../images/spring-comp-2015.jpg);
+  background-position: 50% 90%;
 }
 
 .container {
