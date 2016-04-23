@@ -59,7 +59,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="elements/elements.html">
 
   <!-- For shared styles, shared-styles.html import in elements.html -->
-  <style is="custom-style" include="shared-styles"></style>
+  <style is="custom-style">
+  paper-tabs {
+    --paper-tabs-selection-bar-color: var(--pie-gold);
+  }
+  </style>
 </head>
 
 <body unresolved>
@@ -302,18 +306,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <paper-tab>UPCOMING</paper-tab>
                 <paper-tab>FINISHED</paper-tab>
               </paper-tabs>
-              <style is="custom-style">
-              paper-tabs {
-                /*--pie-blue: #2B3D62;
-                --paper-tab-ink: var(--pie-blue);
-                --paper-tabs-selection-bar-color: var(--pie-blue);*/
-                background: #2B3D62;
-                color: white;
-                padding: 1px;
-                position: relative;
-                top: -20px;
-              }
-              </style>
 
               <iron-pages id="matches-page" selected="{{selected}}">
                 <div>
