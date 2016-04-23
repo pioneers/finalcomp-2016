@@ -12,6 +12,11 @@
   li + li {
     border-top: solid 1px #E0E0E0;
   }
+  #refresh-fab {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+  }
   </style>
   <ul>
 
@@ -36,6 +41,7 @@
     </li>
   </template>
 </ul>
+<paper-fab id="refresh-fab" icon="icons:refresh" elevation="3" on-tap="ready"></paper-fab>
 </template>
 <script>
 Polymer({
@@ -52,21 +58,6 @@ Polymer({
     }
   },
   ready: function() {
-    // this.matches = [{
-    //   blueTeams: [{first: 'Balboa', last: 'Community Day'}],
-    //   goldTeams: [{first: 'Head-Royce', last: 'Encinal'}],
-    //   time: "Sat 11:39 AM",
-    //   blueScore: 2,
-    //   goldScore: 3,
-    //   matchCompleted: true
-    // }, {
-    //   blueTeams: [{first: 'Balboa', last: 'Community Day'}],
-    //   goldTeams: [{first: 'Head-Royce', last: 'Encinal'}],
-    //   time: "Sat 11:39 AM",
-    //   blueScore: 2,
-    //   goldScore: 3,
-    //   matchCompleted: false
-    // }]
     this.matches = []
 
     var xmlhttp = new XMLHttpRequest();
@@ -127,9 +118,8 @@ Polymer({
     xmlhttp.onreadystatechange = update(xmlhttp, this);
     xmlhttp.open("GET", scriptUrl, true);
     xmlhttp.send();
-  }
+  },
 });
-
 
 </script>
 </dom-module>
