@@ -80,9 +80,27 @@ Polymer({
             if (matchNumber.substring(0, 3) == "Row") {matchNumber = "";}
             var blueAllianceNumber = match["bluealliancenumber"];
             var goldAllianceNumber = match["goldalliancenumber"];
-            var blueTeams = [{first: match["blue1name"], last: match["blue2name"]}];
-            if (!blueTeams[0]["first"]) { break; }
-            var goldTeams = [{first: match["gold1name"], last: match["gold2name"]}];
+            var blueTeams = [{
+                              first: {
+                                number: match["blue1number"],
+                                name: match["blue1name"]
+                              },
+                              last: {
+                                number: match["blue2number"],
+                                name: match["blue2name"]
+                              }
+                            }];
+            if (!blueTeams[0]["first"]["number"]) { break; }
+            var goldTeams = [{
+                              first: {
+                                number: match["gold1number"],
+                                name: match["gold1name"]
+                              },
+                              last: {
+                                number: match["gold2number"],
+                                name: match["gold2name"]
+                              }
+                            }];
             var time = match["matchtime"];
             var blueScore = match["bluescore"];
             var goldScore = match["goldscore"];
