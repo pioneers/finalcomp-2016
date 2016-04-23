@@ -20310,6 +20310,10 @@ module.exports = Array.isArray || function (arr) {
         /* vertical-align: middle; */
         width: 40%;
       }
+      .school-rank {
+        color: grey;
+        font-style: italic;
+      }
 
       .labels {
         display: table-cell;
@@ -20344,8 +20348,9 @@ module.exports = Array.isArray || function (arr) {
   </style>
 
     <paper-item>
-      <div class="schools">{{name}} <br>
-        Rank: {{rank}}
+      <div class="schools">
+        <div class="school-name">{{name}}</div>
+        <span class="school-rank">Rank:</span> {{rank}}
       </div>
       <div class="labels">
         <div class="label">Rank Pts:</div>
