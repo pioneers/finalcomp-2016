@@ -21063,6 +21063,10 @@ Polymer({
             {{item.first.number}}: {{item.first.name}}
             <br>
             {{item.last.number}}: {{item.last.name}}
+            <template is="dom-if" if="{{blueAllianceNumber}}">
+            <br>
+            {{item.third.number}}: {{item.third.name}}
+            </template>
           </span>
         </template>
         <template is="dom-repeat" items="{{goldTeams}}">
@@ -21073,6 +21077,10 @@ Polymer({
             {{item.first.number}}: {{item.first.name}}
             <br>
             {{item.last.number}}: {{item.last.name}}
+            <template is="dom-if" if="{{goldAllianceNumber}}">
+            <br>
+            {{item.third.number}}: {{item.third.name}}
+            </template>
           </span>
         </template>
         </div>
@@ -21200,6 +21208,10 @@ Polymer({
                               last: {
                                 number: match["blue2number"],
                                 name: match["blue2name"]
+                              },
+                              third: {
+                                number: match["blue3number"],
+                                name: match["blue3name"]
                               }
                             }];
             if (!blueTeams[0]["first"]["number"]) { break; }
@@ -21211,6 +21223,10 @@ Polymer({
                               last: {
                                 number: match["gold2number"],
                                 name: match["gold2name"]
+                              },
+                              third: {
+                                number: match["gold3number"],
+                                name: match["gold3name"]
                               }
                             }];
             var time = match["matchtime"];
