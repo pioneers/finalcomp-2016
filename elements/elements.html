@@ -20885,7 +20885,7 @@ e=n.propHooks[b]),void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&
     </template>
   </ul>
   <paper-fab id="rankings-explain-fab" icon="icons:help-outline" on-tap="showExplanation"></paper-fab>
-  <paper-dialog id="explain" fitinto="#team-list" with-backdrop="true">
+  <paper-dialog id="explain" role="alertDialog" fitinto="team-list">
     <h2>How rankings are calculated</h2>
     <paper-dialog-scrollable>
       <p>Rankings are calculated as follows:</p>
@@ -21063,25 +21063,17 @@ Polymer({
             {{item.first.number}}: {{item.first.name}}
             <br>
             {{item.last.number}}: {{item.last.name}}
-            <template is="dom-if" if="{{goldAllianceNumber}}">
-              <br>
-              {{item.third.number}}: {{item.third.name}}
-            </template>
           </span>
         </template>
         <template is="dom-repeat" items="{{goldTeams}}">
           <span id="gold-teams">
             <template is="dom-if" if="{{goldAllianceNumber}}">
-              <span class="alliance-numbers">Alliance {{goldAllianceNumber}}</span>
+            <span class="alliance-numbers">Alliance {{goldAllianceNumber}}</span>
             </template>
             {{item.first.number}}: {{item.first.name}}
             <br>
             {{item.last.number}}: {{item.last.name}}
-            <template is="dom-if" if="{{goldAllianceNumber}}">
-              <br>
-              {{item.third.number}}: {{item.third.name}}
-            </template>
-            </span>
+          </span>
         </template>
         </div>
       </div>
@@ -21162,7 +21154,6 @@ e=n.propHooks[b]),void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&
   </template>
 </ul>
 <paper-fab id="refresh-fab" icon="icons:refresh" elevation="3" on-tap="ready"></paper-fab>
-<paper-toast id="updatedToast" duration="1000">Match listing updated.</paper-toast>
 </template>
 <script>
 Polymer({
@@ -21209,13 +21200,9 @@ Polymer({
                               last: {
                                 number: match["blue2number"],
                                 name: match["blue2name"]
-                              },
-                              third: {
-                                number: match["blue3number"],
-                                name: match["blue3name"],
                               }
                             }];
-            if (!blueTeams[0]["first"]["number"]) { console.log("no matches"); break; }
+            if (!blueTeams[0]["first"]["number"]) { break; }
             var goldTeams = [{
                               first: {
                                 number: match["gold1number"],
@@ -21224,10 +21211,6 @@ Polymer({
                               last: {
                                 number: match["gold2number"],
                                 name: match["gold2name"]
-                              },
-                              third: {
-                                number: match["gold3number"],
-                                name: match["gold3name"],
                               }
                             }];
             var time = match["matchtime"];
@@ -21257,16 +21240,14 @@ Polymer({
           if (context.matches.length == 0) {
             context.noMatches = true;
           } else {
-            console.log(context.matches.length);
             context.noMatches = false;
           }
         }
       }
     };
     xmlhttp.onreadystatechange = update(xmlhttp, this);
-    xmlhttp.open("GET", scriptUrl, false);
+    xmlhttp.open("GET", scriptUrl, true);
     xmlhttp.send();
-    this.$.updatedToast.show();
   },
 });
 
