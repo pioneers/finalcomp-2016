@@ -42,6 +42,7 @@
   </template>
 </ul>
 <paper-fab id="refresh-fab" icon="icons:refresh" elevation="3" on-tap="ready"></paper-fab>
+<paper-toast id="updatedToast" duration="1000">Match listing updated.</paper-toast>
 </template>
 <script>
 Polymer({
@@ -88,9 +89,13 @@ Polymer({
                               last: {
                                 number: match["blue2number"],
                                 name: match["blue2name"]
+                              },
+                              third: {
+                                number: match["blue3number"],
+                                name: match["blue3name"],
                               }
                             }];
-            if (!blueTeams[0]["first"]["number"]) { break; }
+            if (!blueTeams[0]["first"]["number"]) { console.log("no matches"); break; }
             var goldTeams = [{
                               first: {
                                 number: match["gold1number"],
@@ -99,6 +104,10 @@ Polymer({
                               last: {
                                 number: match["gold2number"],
                                 name: match["gold2name"]
+                              },
+                              third: {
+                                number: match["gold3number"],
+                                name: match["gold3name"],
                               }
                             }];
             var time = match["matchtime"];
@@ -128,14 +137,16 @@ Polymer({
           if (context.matches.length == 0) {
             context.noMatches = true;
           } else {
+            console.log(context.matches.length);
             context.noMatches = false;
           }
         }
       }
     };
     xmlhttp.onreadystatechange = update(xmlhttp, this);
-    xmlhttp.open("GET", scriptUrl, true);
+    xmlhttp.open("GET", scriptUrl, false);
     xmlhttp.send();
+    this.$.updatedToast.show();
   },
 });
 

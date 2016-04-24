@@ -100,17 +100,25 @@
             {{item.first.number}}: {{item.first.name}}
             <br>
             {{item.last.number}}: {{item.last.name}}
+            <template is="dom-if" if="{{goldAllianceNumber}}">
+              <br>
+              {{item.third.number}}: {{item.third.name}}
+            </template>
           </span>
         </template>
         <template is="dom-repeat" items="{{goldTeams}}">
           <span id="gold-teams">
             <template is="dom-if" if="{{goldAllianceNumber}}">
-            <span class="alliance-numbers">Alliance {{goldAllianceNumber}}</span>
+              <span class="alliance-numbers">Alliance {{goldAllianceNumber}}</span>
             </template>
             {{item.first.number}}: {{item.first.name}}
             <br>
             {{item.last.number}}: {{item.last.name}}
-          </span>
+            <template is="dom-if" if="{{goldAllianceNumber}}">
+              <br>
+              {{item.third.number}}: {{item.third.name}}
+            </template>
+            </span>
         </template>
         </div>
       </div>
