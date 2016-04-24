@@ -21013,7 +21013,7 @@ Polymer({
         background-position: center;
       }
       .alliance-numbers {
-        font-style: italic;
+        /* font-style: italic; */
         font-weight: bold;
       }
       #blue-teams {
@@ -21058,7 +21058,7 @@ Polymer({
         <template is="dom-repeat" items="{{blueTeams}}">
           <span id="blue-teams">
             <template is="dom-if" if="{{blueAllianceNumber}}">
-            <span class="alliance-numbers">Alliance {{blueAllianceNumber}}</span>
+            <span class="alliance-numbers">{{blueAllianceNumber}} Alliance</span>
             </template>
             {{item.first.number}}: {{item.first.name}}
             <br>
@@ -21068,7 +21068,7 @@ Polymer({
         <template is="dom-repeat" items="{{goldTeams}}">
           <span id="gold-teams">
             <template is="dom-if" if="{{goldAllianceNumber}}">
-            <span class="alliance-numbers">Alliance {{goldAllianceNumber}}</span>
+            <span class="alliance-numbers">{{goldAllianceNumber}} Alliance</span>
             </template>
             {{item.first.number}}: {{item.first.name}}
             <br>
