@@ -2,6 +2,7 @@
 <link rel="import" href="../team-listing/team-listing.html">
 <script src="../../scripts/jquery-2.2.2.min.js"></script>
 
+
 <dom-module id="team-list">
   <template>
   <style>
@@ -11,6 +12,11 @@
   }
   li + li {
     border-top: solid 1px #BDBDBD;
+  }
+  #rankings-explain-fab {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
   }
   </style>
   <ul>
@@ -29,6 +35,19 @@
       </li>
     </template>
   </ul>
+  <paper-fab id="rankings-explain-fab" icon="icons:help-outline" on-tap="showExplanation"></paper-fab>
+  <paper-dialog id="explain" role="alertDialog" fitInto="team-list">
+    <h2>How rankings are calculated</h2>
+    <paper-dialog-scrollable>
+      Rankings are calculated as follows: <br>
+      <span style="font-weight: bold;">Ranking Points</span> are 2*(number of wins) + 1*(number of losses).
+      <br>
+      <span style="font-weight: bold;">Qualification Points</span> are the sum of a team's difference in scores against their opponents' scores. For example, if a team wins 15-0 in one match and then loses 0-15 in another match, they have 0 qualification points.
+    </paper-dialog-scrollable>
+    <div class="buttons">
+      <paper-button dialog-dismiss>OK</paper-button>
+    </div>
+  </paper-dialog>
 </template>
 <script>
 Polymer({
@@ -86,6 +105,9 @@ Polymer({
     xmlhttp.onreadystatechange = update(xmlhttp, this);
     xmlhttp.open("GET", spreadsheetUrl, true);
     xmlhttp.send();
+  },
+  showExplanation: function() {
+    this.$.explain.open();
   }
 });
 

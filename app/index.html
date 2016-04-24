@@ -60,9 +60,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <!-- For shared styles, shared-styles.html import in elements.html -->
   <style is="custom-style">
-  paper-tabs {
-    --paper-tabs-selection-bar-color: var(--pie-gold);
-  }
+    paper-tabs {
+      --paper-tabs-selection-bar-color: var(--pie-gold);
+      background: #2B3D62;
+      color: white;
+      padding: 1px;
+      position: relative;
+      top: -20px;
+    }
+    #rankings-explanation {
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -251,30 +259,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </iron-pages>
               </section>
 
-              <!-- <section data-route="user-info" tabindex="-1">
-                <paper-material elevation="-1">
-                  <h1 class="page-title" tabindex="-1">User: {{params.name}}</h1>
-                  <div>This is {{params.name}}'s section</div>
-                </paper-material>
-              </section> -->
-
               <section data-route="qual-matches" tabindex="-1">
                 <paper-tabs id="match-tabs" selected="{{selected}}">
                   <paper-tab>UPCOMING</paper-tab>
                   <paper-tab>FINISHED</paper-tab>
                 </paper-tabs>
-                <style is="custom-style">
-                paper-tabs {
-                  /*--pie-blue: #2B3D62;
-                  --paper-tab-ink: var(--pie-blue);
-                  --paper-tabs-selection-bar-color: var(--pie-blue);*/
-                  background: #2B3D62;
-                  color: white;
-                  padding: 1px;
-                  position: relative;
-                  top: -20px;
-                }
-                </style>
 
                 <iron-pages id="matches-page" selected="{{selected}}">
                   <div>
