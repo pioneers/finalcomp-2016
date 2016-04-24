@@ -294,17 +294,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-tabs id="match-tabs" selected="{{selected}}">
                 <paper-tab>UPCOMING</paper-tab>
                 <paper-tab>FINISHED</paper-tab>
-                <paper-tab>BRACKETS</paper-tab>
               </paper-tabs>
 
               <iron-pages id="matches-page" selected="{{selected}}">
+                <div>
                   <paper-material elevation="1">
                     <match-list google-sheets-key="1329UhQ9onylGly0lnkjUD2fN81QuIyWS_f8ZapCtbg0" sheet-number="2"></match-list>
                   </paper-material>
+                  <!--<paper-fab icon="icons:refresh" elevation="3" style="position:fixed;bottom:10px;right:10px;"></paper-fab>-->
+                </div>
+                <div>
                   <paper-material elevation="1">
                     <match-list google-sheets-key="1329UhQ9onylGly0lnkjUD2fN81QuIyWS_f8ZapCtbg0" sheet-number="2" completed></match-list>
                   </paper-material>
-                <iframe src="http://challonge.com/finalcomp2016/module" width="100%" height="500" frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
+                  <!--<paper-fab icon="icons:refresh" elevation="3" style="position:fixed;bottom:10px;right:10px;"></paper-fab>-->
+                </div>
               </iron-pages>
 
 
