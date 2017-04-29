@@ -20940,7 +20940,7 @@ Polymer({
     this.teams = [];
 
     var xmlhttp = new XMLHttpRequest();
-    var spreadsheetUrl = `https://spreadsheets.google.com/feeds/list/1iEjHU2-kEfuMuRypNA44LqzTYFv3ruzLqs-VzbayWiI/od6/public/values?alt=json-in-script&callback=JSON_CALLBACK`;
+    var spreadsheetUrl = `https://spreadsheets.google.com/feeds/list/${this.googleSheetsKey}/${this.sheetNumber}/public/basic?alt=json`;
     var update = function(xmlhttp, context) {
       return function() {
         if (xmlhttp.readyState == 4 & xmlhttp.status == 200) {
