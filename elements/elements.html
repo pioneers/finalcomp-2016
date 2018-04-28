@@ -22855,6 +22855,7 @@ Polymer({
     googleSheetsKey: String,
     sheetNumber: String,
     completed: Boolean,
+    quals: Boolean,
     noMatches: Boolean,
     matches: {
       type: Array,
@@ -22917,13 +22918,12 @@ Polymer({
             var blueScore = match["bluescore"];
             var goldScore = match["goldscore"];
             var matchCompleted = match["matchcompleted"];
+            var matchType = match["matchtype"];
             var videoLink = match["videourl"];
-            if (matchCompleted == 1) {
-              matchCompleted = true;
-            } else {
-              matchCompleted = false;
-            }
+            matchCompleted = (matchCompleted == 1) ? true : false;
+            qualificationMatch = (matchType == 'Q') ? true : false;
             if ( (matchCompleted || context.completed) && !(matchCompleted && context.completed) ) { continue; }
+            if ( (context.quals || qualificationMatch) && !(qualificationMatch && context.quals) ) { continue; }
             context.push('matches', {
               matchNumber: matchNumber,
               blueAllianceNumber: blueAllianceNumber,
