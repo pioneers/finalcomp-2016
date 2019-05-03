@@ -1,3 +1,13 @@
+# Final Competition Website
+
+The final competition website hosts the iterinerary, qualtifiacation match schedule, and elmination match schedule for final competition. The final competition website is hosted by GitHub Pages and redirected using Cloudflare to [finalcomp.pierobotics.org](https://finalcomp.pierobotics.org).
+
+Starting in 2019, Scott stopped attempting how to (re)learn Google Polymer and began editing the compacted HTML that Google Polymer produces. To edit this code, Scott beautified the HTML using a plugin for Atom or VS Code and then proceeded to edit.
+
+This website also serves as the template for the website used for the Exhibition and Scrimmage websites as found in the `scrimmage` branch.
+
+The match schedules for 2019 are hosted on [this spreadsheet](https://docs.google.com/spreadsheets/d/1vurNOrlIIeCHEtK5aJVDfHrRM1AC2qWvIbtWqUgnmLk/edit#gid=1076994448). To use a new spreadsheet, copy the existing spreadsheet and change the name. Make sure File > Publish to the Web > Entire Document, Web Page to allow access to the spreadsheet as a JSON. To generate the match schedules, use the [Match Scheduler](https://github.com/pioneers/matchscheduler).
+
 ![](https://cloud.githubusercontent.com/assets/110953/7877439/6a69d03e-0590-11e5-9fac-c614246606de.png)
 ## Polymer Starter Kit
 
