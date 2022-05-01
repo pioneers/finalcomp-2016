@@ -54,7 +54,7 @@
           <iron-icon id="drawer-close" class="drawer-top" icon="icons:close" paper-drawer-toggle=""></iron-icon>
         </paper-toolbar>
         <paper-menu class="app-menu" attr-for-selected="data-route" selected="[[route]]"><a data-route="home" href="{{baseUrl}}"><span>Home</span></a> <a data-route="schedule" href="{{baseUrl}}schedule"><span>Schedule</span></a> <a
-            data-route="qual-matches" href="{{baseUrl}}qual-matches"><span>Qualification Matches</span></a> <a data-route="elim-matches" href="{{baseUrl}}elim-matches"><span>Elimination Matches</span></a> <a data-route="rankings"
+            data-route="qual-matches" href="{{baseUrl}}qual-matches"><span>Bracket</span></a> <a data-route="elim-matches" href="{{baseUrl}}elim-matches"><span>Alliances</span></a> <a data-route="rankings"
             href="{{baseUrl}}rankings"><span>Rankings</span></a> <a data-route="livestream" href="{{baseUrl}}livestream"><span>Livestream</span></a> <a id="survey-nav-item"
             href="https://docs.google.com/forms/d/e/1FAIpQLSeu3imTs9nUAlQYngem88cvZbFpO4FQAWBpjCo-FbA8eYKvQw/viewform" target="_blank"><span>Survey!</span></a> <a data-route="license" href="{{baseUrl}}license"><span>License</span></a></paper-menu>
       </paper-scroll-header-panel>
@@ -78,9 +78,15 @@
                   <paper-material>
                     <h2>What is Final Comp?</h2>
                     <p>Pioneers in Engineering's Final Comp is the epic conclusion of our semester-long robotics competition season. This year, we've had over 100 high school students from 15 different high schools competing to see who can build the
-                      best robot. Final Comp is where they finally get to pit their robots against each other to see who will take home the gold in this year's game, Cosmos Unknown.</p>
+                      best robot. Final Comp is where they finally get to pit their robots against each other to see who will take home the gold in this year's game, Cosmos Unknown.
+                  
+                    </p>
+                    <p>
+                      To find a link to the schedule try this link <a href="https://docs.google.com/document/d/1NtuGJM3Pama-8WvPbuIUY3vJhf63ZC4P4UnkLbz6Qoc/edit">here.
+                    </p>
+
                     <div class="youtube-wrap">
-                      <google-youtube video-id="CxOaMV4w-B0" height="100%" width="100%"></google-youtube>
+                      <google-youtube video-id="wqU43x_mO3I" height="100%" width="100%"></google-youtube>
                     </div>
                   </paper-material>
                   <paper-material>
@@ -129,46 +135,36 @@
             </section>
             <section data-route="schedule" tabindex="-1">
               <paper-tabs id="match-tabs" selected="{{selected}}">
-                <paper-tab>SATURDAY</paper-tab>
                 <paper-tab>SUNDAY</paper-tab>
               </paper-tabs>
               <iron-pages id="matches-page" selected="{{selected}}">
                 <div>
                   <paper-material elevation="1">
-                    <schedule-list google-sheets-key="1FtbpxMN9mF1hbZNHS1_ASNrEOf5wIKpRxvI_hHL3gtk" sheet-number="1"></schedule-list>
+                   To find a link to the schedule try this link <a href="https://docs.google.com/document/d/1NtuGJM3Pama-8WvPbuIUY3vJhf63ZC4P4UnkLbz6Qoc/edit">here.</a>
                   </paper-material>
+
+                  <paper-material  elevation="1">
+                    <iframe width="100%" height="600px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQz6WVqi1DwUMfFIwjSEuOQnRZD_ZKWraKAC8xZMy__T0FPmNFNxQxvOn3kz42ztdCS0ywTqoKPNCny/pubhtml?gid=278447706&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+                   </paper-material>
                 </div>
-                <div>
-                  <paper-material elevation="1">
-                    <schedule-list google-sheets-key="1FtbpxMN9mF1hbZNHS1_ASNrEOf5wIKpRxvI_hHL3gtk" sheet-number="8"></schedule-list>
-                  </paper-material>
-				  
-				  
-				  
-					  
-                </div>
+
+               
+            
               </iron-pages>
             </section>
             <section data-route="qual-matches" tabindex="-1">
               <paper-tabs id="match-tabs" selected="{{selected}}">
-                <paper-tab>UPCOMING</paper-tab>
-                <paper-tab>FINISHED</paper-tab>
+                <paper-tab>BRACKET</paper-tab>
               </paper-tabs>
               <iron-pages id="matches-page" selected="{{selected}}">
-			  	<div>
-  				  <paper-material elevation="1">
-  					 To find a link to the schedule try this link <a href="https://docs.google.com/document/d/1NtuGJM3Pama-8WvPbuIUY3vJhf63ZC4P4UnkLbz6Qoc/edit">here.</a>
-  				  </paper-material>
-			  	</div>
+			  	
+          
                 <div>
-                  <paper-material elevation="1">
-                    <match-list google-sheets-key="1vurNOrlIIeCHEtK5aJVDfHrRM1AC2qWvIbtWqUgnmLk" sheet-number="1" quals=""></match-list>
-                  </paper-material>
-                </div>
-                <div>
-                  <paper-material elevation="1">
-                    <match-list google-sheets-key="1vurNOrlIIeCHEtK5aJVDfHrRM1AC2qWvIbtWqUgnmLk" sheet-number="1" completed="" quals=""></match-list>
-                  </paper-material>
+            
+
+                  <paper-material  elevation="1">
+                    <iframe width="100%" height="550px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQz6WVqi1DwUMfFIwjSEuOQnRZD_ZKWraKAC8xZMy__T0FPmNFNxQxvOn3kz42ztdCS0ywTqoKPNCny/pubhtml?gid=1017145766&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+                   </paper-material>
                 </div>
               </iron-pages>
               <script>
@@ -180,19 +176,16 @@
             </section>
             <section data-route="elim-matches" tabindex="-1">
               <paper-tabs id="match-tabs" selected="{{selected}}">
-                <paper-tab>UPCOMING</paper-tab>
-                <paper-tab>FINISHED</paper-tab>
+                <paper-tab>ALLIANCES</paper-tab>
               </paper-tabs>
               <iron-pages id="matches-page" selected="{{selected}}">
+      
                 <div>
-                  <paper-material elevation="1">
-                    <match-list google-sheets-key="1vurNOrlIIeCHEtK5aJVDfHrRM1AC2qWvIbtWqUgnmLk" sheet-number="1"></match-list>
-                  </paper-material>
-                </div>
-                <div>
-                  <paper-material elevation="1">
-                    <match-list google-sheets-key="1vurNOrlIIeCHEtK5aJVDfHrRM1AC2qWvIbtWqUgnmLk" sheet-number="1" completed=""></match-list>
-                  </paper-material>
+                  <paper-material  elevation="1">
+                    <iframe width="100%" height="550px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQz6WVqi1DwUMfFIwjSEuOQnRZD_ZKWraKAC8xZMy__T0FPmNFNxQxvOn3kz42ztdCS0ywTqoKPNCny/pubhtml?gid=1772395932&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+                   </paper-material>
+
+                   
                 </div>
               </iron-pages>
               <script>
@@ -203,9 +196,13 @@
               </script>
             </section>
             <section data-route="rankings" tabindex="-1">
-              <paper-material elevation="1">
-                <team-list google-sheets-key="1vurNOrlIIeCHEtK5aJVDfHrRM1AC2qWvIbtWqUgnmLk" sheet-number="3"></team-list>
-              </paper-material>
+              <div>
+                
+
+                <paper-material  elevation="1">
+                  <iframe width="100%" height="600px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQz6WVqi1DwUMfFIwjSEuOQnRZD_ZKWraKAC8xZMy__T0FPmNFNxQxvOn3kz42ztdCS0ywTqoKPNCny/pubhtml?gid=278447706&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+                 </paper-material>
+              </div>
             </section>
             <section data-route="livestream" tabindex="-1">
               <paper-material elevation="1">
