@@ -59,8 +59,7 @@
           <iron-icon id="drawer-close" class="drawer-top" icon="icons:close" paper-drawer-toggle=""></iron-icon>
         </paper-toolbar>
         <paper-menu class="app-menu" attr-for-selected="data-route" selected="[[route]]"><a data-route="home" href="{{baseUrl}}"><span>Home</span></a> <a data-route="schedule" href="{{baseUrl}}schedule"><span>Schedule</span></a> <a data-route="itinerary"
-            href="{{baseUrl}}itinerary"><span>Student Itinerary</span></a> <a data-route="StudentLinks" href="{{baseUrl}}StudentLinks"><span>Student Links</span></a> <a id="survey-nav-item"
-            href="https://docs.google.com/forms/d/e/1FAIpQLSeu3imTs9nUAlQYngem88cvZbFpO4FQAWBpjCo-FbA8eYKvQw/viewform" target="_blank"><span>Survey!</span></a> <a data-route="license" href="{{baseUrl}}license"><span>License</span></a></paper-menu>
+            href="{{baseUrl}}itinerary"><span>Student Itinerary</span></a> <a data-route="StudentLinks" href="{{baseUrl}}StudentLinks"><span>Student Links</span></a> <a data-route="Survey" href="{{baseUrl}}Survey"id="survey-nav-item"><span>Survey!</span></a> <a data-route="license" href="{{baseUrl}}license"><span>License</span></a></paper-menu>
       </paper-scroll-header-panel>
       <paper-scroll-header-panel main="" id="headerPanelMain" condenses="" keep-condensed-header="">
         <paper-toolbar id="mainToolbar" class="tall">
@@ -137,6 +136,7 @@
                 </div>
               </div>
             </section>
+
             <section data-route="schedule" tabindex="-1">
               <paper-tabs id="match-tabs" selected="{{selected}}">
                 <paper-tab> Matches (1pm - 5pm)</paper-tab>
@@ -154,10 +154,25 @@
                 </div>
 
 
-               
-           
               </iron-pages>
             </section>
+
+            <section data-route="Survey" tabindex="-1">
+              <iron-pages id="matches-page" selected="{{selected}}">
+                <div>
+                  <paper-material elevation="1">
+                    <a>Currently there isn't any surveys to fill out </a>
+                  </paper-material>
+
+
+                  
+                </div>
+
+
+              </iron-pages>
+            </section>
+
+
             <section data-route="qual-matches" tabindex="-1">
               <paper-tabs id="match-tabs" selected="{{selected}}">
                 <paper-tab>BRACKET</paper-tab>
