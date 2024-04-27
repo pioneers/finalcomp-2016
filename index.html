@@ -56,7 +56,7 @@
         <paper-menu class="app-menu" attr-for-selected="data-route" selected="[[route]]"><a data-route="home" href="{{baseUrl}}"><span>Home</span></a> <a data-route="schedule" href="{{baseUrl}}schedule"><span>Schedule</span></a> <a
             data-route="qual-matches" href="{{baseUrl}}qual-matches"><span>Bracket</span></a> <a data-route="elim-matches" href="{{baseUrl}}elim-matches"><span>Alliances</span></a> <a data-route="rankings"
             href="{{baseUrl}}rankings"><span>Rankings</span></a> <a data-route="livestream" href="{{baseUrl}}livestream"><span>Livestream</span></a> <a id="survey-nav-item"
-            href="https://docs.google.com/forms/d/e/1FAIpQLSeu3imTs9nUAlQYngem88cvZbFpO4FQAWBpjCo-FbA8eYKvQw/viewform" target="_blank"><span>Survey!</span></a> <a data-route="license" href="{{baseUrl}}license"><span>License</span></a></paper-menu>
+            href="" target="_blank"><span>Survey!</span></a> <a data-route="license" href="{{baseUrl}}license"><span>License</span></a></paper-menu>
       </paper-scroll-header-panel>
       <paper-scroll-header-panel main="" id="headerPanelMain" condenses="" keep-condensed-header="">
         <paper-toolbar id="mainToolbar" class="tall">
@@ -125,7 +125,7 @@
             </section>
             <section data-route="schedule" tabindex="-1">
               <paper-tabs id="match-tabs" selected="{{selected}}">
-                <paper-tab>SUNDAY</paper-tab>
+                <paper-tab>Saturday/paper-tab>
               </paper-tabs>
               <iron-pages id="matches-page" selected="{{selected}}">
                 <div>
@@ -134,12 +134,9 @@
                   </paper-material>
 
                   <paper-material  elevation="1">
-                    <iframe width="100%" height="600px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQz6WVqi1DwUMfFIwjSEuOQnRZD_ZKWraKAC8xZMy__T0FPmNFNxQxvOn3kz42ztdCS0ywTqoKPNCny/pubhtml?gid=278447706&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
-                   </paper-material>
+                    <iframe width="100%" height="600px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTYGiiplKYPIQpGZ7fRHX9oUQCarTgkSSaE1naEt6EwORDZidZeAYp5atSrqw80Evz7ZH4RjMKHXgio/pubhtml?gid=278447706&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
                 </div>
-
                
-            
               </iron-pages>
             </section>
             <section data-route="qual-matches" tabindex="-1">
@@ -153,7 +150,7 @@
             
 
                   <paper-material  elevation="1">
-                    <iframe width="100%" height="550px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQz6WVqi1DwUMfFIwjSEuOQnRZD_ZKWraKAC8xZMy__T0FPmNFNxQxvOn3kz42ztdCS0ywTqoKPNCny/pubhtml?gid=1017145766&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+                    <iframe width="100%" height="550px" src="https://docs.google.com/spreadsheets/d/1cgt5r4ABchCqxiZYUUJc7kKLSZTQKHQB_9SHeZo2Gbg/edit?usp=sharing"></iframe>
                    </paper-material>
                 </div>
               </iron-pages>
@@ -172,7 +169,7 @@
       
                 <div>
                   <paper-material  elevation="1">
-                    <iframe width="100%" height="550px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQz6WVqi1DwUMfFIwjSEuOQnRZD_ZKWraKAC8xZMy__T0FPmNFNxQxvOn3kz42ztdCS0ywTqoKPNCny/pubhtml?gid=1772395932&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+                    <iframe width="100%" height="550px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTYGiiplKYPIQpGZ7fRHX9oUQCarTgkSSaE1naEt6EwORDZidZeAYp5atSrqw80Evz7ZH4RjMKHXgio/pubhtml?gid=1772395932&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
                    </paper-material>
 
                    
@@ -185,15 +182,19 @@
                 });
               </script>
             </section>
-            <section data-route="rankings" tabindex="-1">
-              <div>
-                
 
+            <!-- 
+            <section data-route="rankings" tabindex="-1">
+              <paper-tab>Rankings</paper-tab>
+              <div>
+                              
                 <paper-material  elevation="1">
-                  <iframe width="100%" height="600px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQz6WVqi1DwUMfFIwjSEuOQnRZD_ZKWraKAC8xZMy__T0FPmNFNxQxvOn3kz42ztdCS0ywTqoKPNCny/pubhtml?gid=278447706&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+                  <iframe width="100%" height="600px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTYGiiplKYPIQpGZ7fRHX9oUQCarTgkSSaE1naEt6EwORDZidZeAYp5atSrqw80Evz7ZH4RjMKHXgio/pubhtml?gid=1726883378&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
                  </paper-material>
               </div>
-            </section>
+            </section>-->
+
+
             <section data-route="livestream" tabindex="-1">
               <paper-material elevation="1">
                 <h2>Livestream</h2>
