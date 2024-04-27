@@ -2,7 +2,7 @@
   "use strict";
   var o = e.querySelector("#app");
   (o.baseUrl = "/"),
-    "" === window.location.port && (o.baseUrl = "/finalcomp-2022/"),
+    "" === window.location.port && (o.baseUrl = "/"),
     (o.displayInstalledToast = function () {
       Polymer.dom(e).querySelector("platinum-sw-cache").disabled ||
         Polymer.dom(e).querySelector("#caching-complete").show();
