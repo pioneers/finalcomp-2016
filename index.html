@@ -252,6 +252,197 @@
     ga('create', 'UA-35543006-1', 'auto');
     ga('send', 'pageview');
   </script>
+  <!---->
+<div id="chat-container">
+  <div id="chat-header">
+    <span>PiEGPT</span>
+    <button id="close-chat">×</button>
+  </div>
+  <div id="chat-messages"></div>
+  <div id="chat-input">
+    <input type="text" id="message-input" placeholder="Type your message...">
+    <button id="send-button">Send</button>
+  </div>
+</div>
+<button id="chat-button">💬</button>
+
+<style>
+  #chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #2B3D62;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    z-index: 1000;
+  }
+  #chat-button:hover {
+    background: #335593; /* Lighter shade on hover */
+  }
+
+  #chat-container {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+  }
+
+  #chat-header {
+    background: #2B3D62;
+    color: white;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #close-chat {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  #chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background: #f5f5f5;
+  }
+
+  #chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+  }
+
+  #message-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 5px;
+  }
+
+  #send-button {
+    padding: 8px 15px;
+    background: #2B3D62;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  #send-button:hover {
+    background: #335593; /* Lighter shade on hover */
+  }
+
+  .message {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    max-width: 80%;
+  }
+
+  .user-message {
+    background: #2B3D62;
+    color: white;
+    margin-left: auto;
+  }
+
+  .bot-message {
+    background: #e0e0e0;
+    margin-right: auto;
+  }
+</style>
+
+
+<script>
+  // PiEGPT
+  // Chat toggle functionality
+  const chatButton = document.getElementById('chat-button');
+  const chatContainer = document.getElementById('chat-container');
+  const closeChat = document.getElementById('close-chat');
+  
+  chatButton.addEventListener('click', () => {
+  if (chatContainer.style.display === 'none' || !chatContainer.style.display) {
+    chatContainer.style.display = 'flex';
+  } else {
+    chatContainer.style.display = 'none';
+  }
+});
+
+closeChat.addEventListener('click', () => {
+  chatContainer.style.display = 'none';
+});
+
+  // Chat functionality
+  const messageInput = document.getElementById('message-input');
+  const sendButton = document.getElementById('send-button');
+  const chatMessages = document.getElementById('chat-messages');
+
+  function addMessage(text, isUser = true) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+    messageDiv.textContent = text;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function handleSendMessage() {
+    const message = messageInput.value.trim();  // Get the user message
+    if (message) {
+      addMessage(message, true);  // Add the user's message to the chat
+      messageInput.value = ''; 
+
+      // Send the message to the backend 
+      fetch('http://localhost:8000/ask', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question: message }), 
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();  // Expecting JSON response from the backend
+      })
+      .then(data => {
+        if (data.response) {
+          addMessage(data.response, false);  // Add the response to the chat
+        } else {
+          addMessage("Sorry, there was an error in the AI response.", false);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        addMessage("Sorry, there was an error fetching the response.", false);
+      });
+    }
+  }
+
+  sendButton.addEventListener('click', handleSendMessage);
+  messageInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleSendMessage();
+  });
+ </script>
+  
 </body>
 
 </html>
