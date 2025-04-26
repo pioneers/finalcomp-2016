@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="Polymer Starter Kit">
-  <title>Final Competition</title>
+  <title>Scrimmage</title>
   <meta name="theme-color" content="#2B3D62">
   <link rel="manifest" href="manifest.json">
   <meta name="msapplication-TileColor" content="#3372DF">
@@ -50,12 +50,19 @@
 <body unresolved=""><template is="dom-bind" id="app">
     <paper-drawer-panel id="paperDrawerPanel">
       <paper-scroll-header-panel drawer="" fixed="">
-        <paper-toolbar id="drawerToolbar" class="tall"><span id="drawer-title" class="drawer-top">Final Competition</span> <span id="drawer-subtitle" class="drawer-top">Pioneers in Engineering</span>
+        <paper-toolbar id="drawerToolbar" class="tall"><span id="drawer-title" class="drawer-top">Scrimmage</span> <span id="drawer-subtitle" class="drawer-top">Pioneers in Engineering</span>
           <iron-icon id="drawer-close" class="drawer-top" icon="icons:close" paper-drawer-toggle=""></iron-icon>
         </paper-toolbar>
-        <paper-menu class="app-menu" attr-for-selected="data-route" selected="[[route]]"><a data-route="home" href="{{baseUrl}}"><span>Home</span></a> <a data-route="schedule" href="{{baseUrl}}schedule"><span>Schedule</span></a> <a
-            data-route="qual-matches" href="{{baseUrl}}qual-matches"><span>Queuing</span></a> <a data-route="elim-matches" href="{{baseUrl}}elim-matches"><span>Alliances</span></a>  <a data-route="livestream" href="{{baseUrl}}livestream"><span>Livestream</span></a> <a id="survey-nav-item"
-            href="" target="_blank"><span>Survey!</span></a> <a data-route="license" href="{{baseUrl}}license"><span>License</span></a></paper-menu>
+        <paper-menu class="app-menu" attr-for-selected="data-route" selected="[[route]]">
+          <a data-route="home" href="{{baseUrl}}"><span>Home</span></a> 
+          <a data-route="schedule" href="{{baseUrl}}schedule"><span>Schedule</span></a> 
+          <a data-route="qual-matches" href="{{baseUrl}}qual-matches"><span>Queuing</span></a>
+          <!-- <a data-route="elim-matches" href="{{baseUrl}}elim-matches"><span>Alliances</span></a>   -->
+          <a data-route="livestream" href="{{baseUrl}}livestream"><span>Livestream</span></a> 
+          <!-- <a id="survey-nav-item" href="" target="_blank"><span>Survey!</span></a>  -->
+          <a data-route="license" href="{{baseUrl}}license"><span>License</span></a>
+        
+        </paper-menu>
       </paper-scroll-header-panel>
       <paper-scroll-header-panel main="" id="headerPanelMain" condenses="" keep-condensed-header="">
         <paper-toolbar id="mainToolbar" class="tall">
@@ -64,7 +71,7 @@
             <div class="app-name">Pioneers in Engineering</div>
           </div>
           <div class="bottom bottom-container">
-            <div class="bottom-title">Final Competition 2024</div>
+            <div class="bottom-title">Scrimmage 2025</div>
           </div>
         </paper-toolbar>
         <div class="content">
@@ -74,26 +81,24 @@
               <div id="shift-up">
                 <div class="container">
                   
-                  <paper-material id="welcome" elevation="1"><span id="intro-big">Welcome,</span><br><span id="intro-small">this is Final Competition!!</span></paper-material>
+                  <paper-material id="welcome" elevation="1"><span id="intro-big">Welcome,</span><br><span id="intro-small">this is Scrimmage!!</span></paper-material>
                   <paper-material elevation="1">
-                    Important Student links: <a href="https://docs.google.com/document/d/1HGjNaUBaAI9YNI-b5Yyv7WibTlrxYOn0CcXn1lYvHXA/edit?pli=1">Link</a> <br></br>
-                    Final Comp Itinerary: <a href="https://docs.google.com/document/d/1Xn3fWxkoAU0nebi3crus0QCBqTJrX8uZnlWh7BAb48E/edit?usp=sharing">Link.</a>
+                    Important Student links: <a href="https://docs.google.com/document/d/1V_lpfGibBZ0yNzGFNT2H8FmxeRsi-RwRn9vMpdC0ZPk/edit?tab=t.0">Link</a> <br></br>
+                    Scrimmage Itinerary: <a href="https://docs.google.com/document/d/1kDVr0meusqcy7kT-KzJ8Lkqb9Letx-PLcPDyrTArBck/edit?tab=t.0">Link.</a>
                   
                   </paper-material>
                   
                   
                   <paper-material>
-                    <h2>What is Final Comp?</h2>
-                    <p>Pioneers in Engineering's Final Comp is the epic conclusion of our semester-long robotics competition season. This year, we've had over 100 high school students from 18 different high schools competing to see who can build the
-                      best robot. Final Comp is where they finally get to pit their robots against each other to see who will take home the gold in this year's game, Escape From Alcatraz.
-                  
+                    <h2>What is Scrimmage?</h2>
+                    <p>Scrimmage is the second to last event in the RC season. It is an opportunity for students to test their robots in practice matches and familiarize themselves with competition procedures. Robots that pass inspection may compete in practice matches against other teams, while a practice field remains open for teams to test their robots.
                     </p>
                     <p>
-                      Final Comp Itinerary: <a href="https://docs.google.com/document/d/1Xn3fWxkoAU0nebi3crus0QCBqTJrX8uZnlWh7BAb48E/edit?usp=sharing">here.</a>
+                      2025 Game Manual: <a href="https://docs.google.com/document/d/1eV7FfOQ9Rb22ZusbkcfQg-Tb3dtdPMqhtkMM7ty2fXs/edit?tab=t.0">here.</a>
                     </p>
 
                     <div class="youtube-wrap">
-                      <google-youtube video-id="dMCOwi6k35M" height="100%" width="100%"></google-youtube>
+                      <google-youtube video-id="b04RtiZ6m-E" height="100%" width="100%"></google-youtube>
                     </div>
                   </paper-material>
                   <paper-material>
@@ -105,8 +110,8 @@
                     <h2>Event Details</h2>
                     <p>
                       <ul>
-                        <li>Where: Hearst Memorial Mining Building</li>
-                        <li>When: 8 AM - 5 PM, Saturday 4/27 and Sunday 4/28</li>
+                        <li>Where: McCone Hall</li>
+                        <li>When: 8 AM - 5 PM, Saturday 4/26 </li>
                       </ul>
                     </p>
                   </paper-material>
@@ -137,13 +142,13 @@
               <iron-pages id="matches-page" selected="{{selected}}">
                 <div>
                   <paper-material elevation="1">
-                   Final Comp Itinerary: <a href="https://docs.google.com/document/d/1Xn3fWxkoAU0nebi3crus0QCBqTJrX8uZnlWh7BAb48E/edit?usp=sharing">here.</a>
+                   Scrimmage Itinerary: <a href="https://docs.google.com/document/d/1kDVr0meusqcy7kT-KzJ8Lkqb9Letx-PLcPDyrTArBck/edit?tab=t.0">here.</a>
                   </paper-material>
 
                   
 
                   <paper-material  elevation="1">
-                    <iframe width="100%" height="600px"src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTYGiiplKYPIQpGZ7fRHX9oUQCarTgkSSaE1naEt6EwORDZidZeAYp5atSrqw80Evz7ZH4RjMKHXgio/pubhtml?gid=278447706&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+                    <iframe width="100%" height="600px"src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSwMYS8fDknFN021PLK7f_5qlQTyE6wlIfOo370uqb8MfuhDrw7UHfx5nacGaqd4ItWHTp1O1cFbx1e/pubhtml?gid=1601619837&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
                 </div>
                
               </iron-pages>
@@ -155,7 +160,7 @@
               <iron-pages id="matches-page" selected="{{selected}}">
                 <div>
                   <paper-material  elevation="1">
-                    <iframe width="100%" height="600px"src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTYGiiplKYPIQpGZ7fRHX9oUQCarTgkSSaE1naEt6EwORDZidZeAYp5atSrqw80Evz7ZH4RjMKHXgio/pubhtml?gid=66259830&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+                    <iframe width="100%" height="600px"src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSwMYS8fDknFN021PLK7f_5qlQTyE6wlIfOo370uqb8MfuhDrw7UHfx5nacGaqd4ItWHTp1O1cFbx1e/pubhtml?gid=66259830&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
                    </paper-material>
                 </div>
               </iron-pages>
